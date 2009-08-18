@@ -40,8 +40,8 @@
 
 (setq tramp-default-method "scpc")
 (setq require-final-newline 'query)
-(setq initial-frame-alist '((width . 80) (height . 50)))
-(setq default-frame-alist '((width . 80) (height . 50)))
+(setq initial-frame-alist '((width . 80) (height . 50) (top + 50)))
+(setq default-frame-alist '((width . 80) (height . 50) (top + 50)))
 
 
 ;;(add-hook 'c-mode-hook 'turn-on-font-lock)
