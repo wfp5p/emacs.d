@@ -1,5 +1,4 @@
-(setq load-path
-      (append load-path (list "~/.emacs.d")) )
+(add-to-list 'load-path user-emacs-directory)
 
 (require 'misc)
 (require 'ws-trim)
