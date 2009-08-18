@@ -37,7 +37,8 @@
 (defcustom unbound-modifiers '(control meta shift)
   "Modifiers to consider when searching for unbound keys."
   :type '(set (const control) (const meta) (const shift)
-              (const super) (const hyper) (const alt)))
+              (const super) (const hyper) (const alt))
+  :group 'unbound)
 
 (defvar unbound-key-list
   (let (keys)
