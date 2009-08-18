@@ -17,13 +17,14 @@
 
 (setq wfp5p-C-k-map (make-keymap))
 (define-key global-map "\C-k" wfp5p-C-k-map)
+(define-key wfp5p-C-k-map "c" 'copy-region-as-kill)
+;;(define-key wfp5p-C-k-map "f" 'find-file)
+(define-key wfp5p-C-k-map "f" 'search-forward)
+(define-key wfp5p-C-k-map "k" 'kill-line)
+(define-key wfp5p-C-k-map "r" 'insert-file)
 (define-key wfp5p-C-k-map "u" 'beginning-of-buffer)
 (define-key wfp5p-C-k-map "v" 'end-of-buffer)
-(define-key wfp5p-C-k-map "k" 'kill-line)
-(define-key wfp5p-C-k-map "c" 'copy-region-as-kill)
 (define-key wfp5p-C-k-map "y" 'kill-region)
-(define-key wfp5p-C-k-map "f" 'find-file)
-(define-key wfp5p-C-k-map "r" 'insert-file)
 (define-key wfp5p-C-k-map "z" 'zap-up-to-char)
 
 (provide 'wfp5p-keys)
