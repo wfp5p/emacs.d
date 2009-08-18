@@ -1,0 +1,3 @@
+To compile:
+
+emacs -batch -l /home/wfp5p/.emacs -f batch-byte-compile /home/wfp5p/.emacs.d/*
