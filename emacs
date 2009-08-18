@@ -46,12 +46,12 @@
 			    (tool-bar-lines . nil)))
 (setq default-frame-alist initial-frame-alist)
 
-
-
 ;;(add-hook 'c-mode-hook 'turn-on-font-lock)
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+(if (not (window-system))
+    (add-to-list 'initial-frame-alist '(menu-bar-lines . 0)))
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
