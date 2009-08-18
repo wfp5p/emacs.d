@@ -1,5 +1,5 @@
-
-(setq fn '("/lv2/users/wfp5p/kernel/linux-2.6"))
+(setq wfp5p-modes-alist '( ("/lv2/users/wfp5p/kernel/linux-2.6" . "linux")
+			   ("/tmp" . "wfp5p") ))
 
 (defconst wfp5p-c-style
   '("bsd"
@@ -8,12 +8,15 @@
 (c-add-style "wfp5p" wfp5p-c-style)
 
 (defun wfp5p-c-mode-hook ()
-  (c-set-style "wfp5p")
   (turn-on-ws-trim)
-  (let (buffer-file-truename)
-    (setq buffer-file-truename (file-truename buffer-file-name))
-    (when (string-match (regexp-opt fn) buffer-file-truename)
-      (c-set-style "linux"))))
+  (let ((default-mode "wfp5p")
+	(mode)
+	(name))
+    (setq name (file-truename buffer-file-name))
+    (setq mode (assoc-default name wfp5p-modes-alist 'string-match))
+    (if (stringp mode)
+	(c-set-style mode)
+      (c-set-style default-mode))))
 
 
 (add-hook 'c-mode-common-hook 'wfp5p-c-mode-hook)
