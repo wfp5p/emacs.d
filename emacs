@@ -4,6 +4,9 @@
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
 
+(autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
+(autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
+
 (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
 (custom-set-variables
