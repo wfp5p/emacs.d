@@ -1,5 +1,7 @@
 (require 'sequential-command)
 
+(autoload 'zap-up-to-char "misc" "zap up to char" t)
+
 ;; wfp5p key maps
 (define-key global-map "\M-d" 'kill-line)
 (define-key global-map "\M-s" 'save-buffer)
