@@ -5,6 +5,7 @@
 ;; wfp5p key maps
 (define-key global-map "\M-d" 'kill-line)
 (define-key global-map "\M-s" 'save-buffer)
+(define-key global-map "\M-t" 'query-replace)
 (define-key global-map "\C-u" 'scroll-down)
 (define-key global-map [f5] 'goto-line)
 
