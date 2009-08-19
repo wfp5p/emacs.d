@@ -1,3 +1,5 @@
+(autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
+
 (setq wfp5p-modes-alist '( ("/lv2/users/wfp5p/kernel/linux-2.6" . "linux")
 			   ("/tmp" . "wfp5p") ))
 

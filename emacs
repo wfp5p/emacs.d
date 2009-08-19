@@ -1,6 +1,6 @@
 (add-to-list 'load-path user-emacs-directory)
 
-(require 'ws-trim)
+
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
 
