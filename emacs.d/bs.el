@@ -31,7 +31,7 @@
 ;; buffer in a way similar to `list-buffers' and `electric-buffer-list':
 ;; The new buffer offers a Buffer Selection Menu for manipulating
 ;; the buffer list and buffers.
-;; 
+;;
 ;; -----------------------------------------------------------------------
 ;; | MR Buffer          Size  Mode          File                         |
 ;; | -- ------          ----  ----          ----                         |
@@ -61,10 +61,10 @@
 ;; function `bs-mode'. A current configuration describes which buffers appear
 ;; in *buffer-selection*. See docstring of variable `bs-configurations' for
 ;; more details.
-;; 
+;;
 ;; The package bs combines the advantages of the Emacs functions
 ;; `list-buffers' and `electric-buffer-list'.
-;; 
+;;
 ;; Additioal features for Buffer Selection Menu:
 ;;  - configurable list of buffers (show only files etc.).
 ;;  - comfortable way to change displayed subset of all buffers.
@@ -81,40 +81,40 @@
 ;; Bind these function to a key like
 ;;   (global-set-key [(f9)]   'bs-cycle-previous)
 ;;   (global-set-key [(f10)]  'bs-cycle-next)
-;; 
+;;
 ;; Both functions use a special subset of all buffers for cycling to avoid
 ;; to go through internal buffers like *Messages*.
-;; 
+;;
 ;; Cycling through buffers ignores sorting because sorting destroys
 ;; the logical buffer list. If buffer list is sorted by size you
 ;; won't be able to cycle to the smallest buffer.
- 
+
 ;;; Customization:
 
 ;; There is a customization group called `bs' in group `convenience'.
 ;; Start customization by M-x bs-customize
-;;  
+;;
 ;; Buffer list
 ;; -----------
 ;; You can define your own configurations by extending variable
 ;; `bs-configurations' (see docstring for details).
-;; 
+;;
 ;; `bs-default-configuration' contains the name of default configuration.
 ;; The default value is "files" which means to show only files.
-;;  
+;;
 ;; If you always want to see all buffers, customize variable
 ;; `bs-default-configuration' in customization group `bs'.
-;; 
+;;
 ;; Configure sorting
 ;; -----------------
 ;; You can define functions for sorting the buffer list.
 ;; When selecting buffers, you can step through available sorting
 ;; methods with key 'S'.
 ;; To define a new way of sorting, customize variable `bs-sort-functions'.
-;; 
+;;
 ;; There are four basic functions for sorting:
 ;;   by buffer name, by mode, by size, or by filename
-;; 
+;;
 ;; Configure buffer cycling
 ;; ------------------------
 ;; When cycling through buffer list the functions for cycling will use
@@ -785,14 +785,14 @@ Leave Buffer Selection Menu."
     (bury-buffer (current-buffer))
     (set-window-configuration bs--window-config-coming-from)
     (switch-to-buffer-other-window buffer)))
- 
+
 (defun bs-tmp-select-other-window ()
   "Make the other window select this line's buffer.
 The current window remains selected."
   (interactive)
   (let ((buffer (bs--current-buffer)))
     (display-buffer buffer t)))
- 
+
 (defun bs-select-other-frame ()
   "Select current line's buffer in new created frame.
 Leave Buffer Selection Menu."
@@ -1029,7 +1029,7 @@ Uses Function `vc-toggle-read-only'."
   "Move cursor vertically up one line.
 If on top of buffer list go to last line."
   (interactive "p")
-  (previous-line 1)
+  (forward-line -1)
   (if (<= (count-lines 1 (point)) (1- bs-header-lines-length))
       (progn
 	(goto-char (point-max))
@@ -1050,7 +1050,7 @@ If at end of buffer list go to first line."
   (let ((last (line-end-position)))
     (if (eq last (point-max))
 	(goto-line (1+ bs-header-lines-length))
-      (next-line 1))))
+      (forward-line 1))))
 
 (defun bs-visits-non-file (buffer)
   "Return t or nil whether BUFFER visits no file.
@@ -1304,7 +1304,7 @@ by buffer configuration `bs-cycle-configuration-name'."
 	(bs-message-without-log "Previous buffers: %s"
 				(or (reverse (cdr bs--cycle-list))
 				    "this buffer"))))))
-  
+
 (defun bs--get-value (fun &optional args)
   "Apply function FUN with arguments ARGS.
 Return result of evaluation.  Will return FUN if FUN is a number
@@ -1314,7 +1314,7 @@ or a string."
 	((stringp fun)
 	 fun)
 	(t (apply fun args))))
-	
+
 (defun bs--get-marked-string (start-buffer all-buffers)
   "Return a string which describes whether current buffer is marked.
 START-BUFFER is the buffer where we started buffer selection.
@@ -1370,7 +1370,7 @@ ALL-BUFFERS is the list of buffer appearing in Buffer Selection Menu."
 	(concat name
 		(make-string (- bs--name-entry-length (length name)) ? ))
       name)))
-		
+
 
 (defun bs--get-mode-name (start-buffer all-buffers)
   "Return the name of mode of current buffer for Buffer Selection Menu.
@@ -1430,7 +1430,7 @@ ALIGN is one of the symbols `left', `middle', or `right'."
       (if (eq 'right align)
 	  (concat (make-string (- len length) ? ) string)
 	(concat string (make-string (- len length) ? ))))))
-		  
+
 (defun bs--show-header ()
   "Insert header for Buffer Selection Menu in current buffer."
   (mapcar '(lambda (string)
@@ -1502,7 +1502,7 @@ Otherwise return `bs-alternative-configuration'."
 	   bs-default-configuration))
 	;; call by prefix argument C-u
 	(t bs-alternative-configuration)))
-  
+
 ;; ----------------------------------------------------------------------
 ;; Main function bs-customize and bs-show
 ;; ----------------------------------------------------------------------
