@@ -5,6 +5,8 @@
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
 
+(autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
