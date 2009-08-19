@@ -1,4 +1,4 @@
-;;; ws-trim.el --- Tools and minor mode to trim whitespace on text lines
+;; ws-trim.el --- Tools and minor mode to trim whitespace on text lines
 
 ;; Copyright (C) 1997 Martin Stjernholm
 
@@ -262,6 +262,13 @@ just want to do something simple, e.g. setting some variables.")
 See the variable `ws-trim-mode' for further info on this mode."
   (interactive)
   (ws-trim-mode 1))
+
+;;;###autoload
+(defun turn-off-ws-trim ()
+  "Unconditionally turn off WS Trim mode.
+See the variable `ws-trim-mode' for further info on this mode."
+  (interactive)
+  (ws-trim-mode nil))
 
 ;;;###autoload
 (defun ws-trim-mode (&optional arg)
