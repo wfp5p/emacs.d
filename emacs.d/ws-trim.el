@@ -322,23 +322,7 @@ See the variable docstring for details about this mode."
 ;; Non-nil if there's a newline in current `ws-trim-changed-region'.
 (make-variable-buffer-local 'ws-trim-changed-newline)
 
-(when (and (= emacs-major-version 19) (<= emacs-minor-version 34))
-  ;; This is a kludge to counter the way `newline' inserts newlines
-  ;; under some circumstances (see the comment at the beginning of
-  ;; that function in simple.el in Emacs 19.34).  Newlines aren't
-  ;; always inserted near point which makes `ws-trim-after-change'
-  ;; report the line two lines above point as changed.  That in turn
-  ;; causes the whole changed region to be too large to be trimmed
-  ;; under level 0 trimming.
-  ;;
-  ;; Hopefully this is only necessary up to and including Emacs 19.34.
-  ;; Although the kludge tries to be as narrow as possible there's a
-  ;; risk that it will incorrectly counter other situations too.
-  (defvar ws-trim-newline-kludge nil)
-  ;; If a marker, a "funny" newline from `newline' is suspected.  The
-  ;; marker mark to the newline in question.  If t, we're sure it
-  ;; can't happen now.
-  (make-variable-buffer-local 'ws-trim-newline-kludge))
+
 
 (defun ws-trim-after-change (beg end length)
   (or (eq ws-trim-changed-region 'ignore)
