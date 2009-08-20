@@ -1,6 +1,7 @@
 (autoload 'cperl-set-style "cperl-mode" "set cperl style" t)
 
 (defun wfp5p-cperl-mode-hook ()
+  (setq-default cperl-invalid-face 'default)
   (setq-default cperl-hairy t)
   (setq-default cperl-electric-parens nil)
   (setq-default cperl-electric-parens-string nil)
