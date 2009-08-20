@@ -37,21 +37,19 @@
 		'(" " bc-goto-current)))
     keymap))
 
-
-(defvar wfp5p-C-k-map nil "")
-(setq wfp5p-C-k-map (make-sparse-keymap))
-
+(defvar wfp5p-C-k-map
+  (let ((keymap (make-sparse-keymap)))
+    (mapc (function (lambda (kb) (define-key keymap (car kb) (cadr kb))))
+	  (list (list "b" wfp5p-bread-map)
+		'("c" copy-region-as-kill)
+		'("f" search-forward)
+		'("k" kill-line)
+		'("r" insert-file)
+		'("u" beginning-of-buffer)
+		'("v" end-of-buffer)
+		'("y" kill-region)
+		'("z" zap-up-to-char)))
+    keymap))
 
 (define-key global-map "\C-k" wfp5p-C-k-map)
-(define-key wfp5p-C-k-map "b" wfp5p-bread-map)
-(define-key wfp5p-C-k-map "c" 'copy-region-as-kill)
-;;(define-key wfp5p-C-k-map "f" 'find-file)
-(define-key wfp5p-C-k-map "f" 'search-forward)
-(define-key wfp5p-C-k-map "k" 'kill-line)
-(define-key wfp5p-C-k-map "r" 'insert-file)
-(define-key wfp5p-C-k-map "u" 'beginning-of-buffer)
-(define-key wfp5p-C-k-map "v" 'end-of-buffer)
-(define-key wfp5p-C-k-map "y" 'kill-region)
-(define-key wfp5p-C-k-map "z" 'zap-up-to-char)
-
 (provide 'wfp5p-keys)
