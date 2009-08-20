@@ -77,8 +77,6 @@
 
 (put 'downcase-region 'disabled nil)
 
-(setq-default c-electric-flag t)
-(setq-default c-auto-newline t)
 
 (defun wfp5p-make-CR-do-indent ()
   (define-key c-mode-base-map "\C-m" 'c-context-line-break))

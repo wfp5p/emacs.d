@@ -8,6 +8,8 @@
 (c-add-style "wfp5p" wfp5p-c-style)
 
 (defun wfp5p-c-mode-hook ()
+  (setq-default c-electric-flag t)
+  (setq-default c-auto-newline t)
   (turn-on-ws-trim)
   (let ((default-mode "wfp5p")
 	(mode)
