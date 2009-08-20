@@ -50,6 +50,9 @@
 			    (tool-bar-lines . nil)))
 (setq default-frame-alist initial-frame-alist)
 
+(setq-default bc-bookmark-file (expand-file-name (concat user-emacs-directory "breadcrumb")))
+
+
 ;;(add-hook 'c-mode-hook 'turn-on-font-lock)
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
