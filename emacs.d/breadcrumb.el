@@ -267,6 +267,7 @@
 (defun bc-clear ()
   "Clear all the breadcrumb bookmarks in the queue."
   (interactive)
+  (message "breadcrumbs cleared.")
   (setq *bc-bookmarks* ())
   (setq *bc-current* 0)
   )
