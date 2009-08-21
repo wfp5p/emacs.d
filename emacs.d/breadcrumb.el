@@ -768,7 +768,8 @@ The following commands are available.
   )
 
 ;; Load from file on start up.
-(add-hook' after-init-hook 'bc-bookmarks-restore)
+(eval-after-load "breadcrumb"
+  '(bc-bookmarks-restore))
 
 ;; Save to file on exit.
 (add-hook 'kill-emacs-hook 'bc-bookmarks-save)
@@ -826,10 +827,10 @@ If POS is nil, use current buffer location."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; Testing
-(eval-when-compile
- (bc-bookmarks-get 0)
- (bc-bookmarks-get 1)
- )
+;;(eval-when-compile
+;; (bc-bookmarks-get 0)
+;; (bc-bookmarks-get 1)
+;; )
 
 ;;; Debugging with C-xC-e
 (if nil
