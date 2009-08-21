@@ -12,6 +12,11 @@
 (autoload 'bc-list "breadcrumb" "List all bookmarks in menu mode." t)
 (autoload 'bc-clear "breadcrumb" "Clear all bookmarks."  t)
 
+(defun wfp5p-nuke-auto-save ()
+  "Delete the current buffers auto-save file."
+  (interactive)
+  (delete-auto-save-file-if-necessary t))
+
 ;; wfp5p key maps
 (define-key global-map "\M-d" 'kill-line)
 (define-key global-map "\M-s" 'save-buffer)
@@ -48,7 +53,8 @@
 		'("u" beginning-of-buffer)
 		'("v" end-of-buffer)
 		'("y" kill-region)
-		'("z" zap-up-to-char)))
+		'("z" zap-up-to-char)
+		'("\C-k" wfp5p-nuke-auto-save)))
     keymap))
 
 (define-key global-map "\C-k" wfp5p-C-k-map)
