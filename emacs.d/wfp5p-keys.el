@@ -17,10 +17,18 @@
   (interactive)
   (delete-auto-save-file-if-necessary t))
 
+
+(defun wfp5p-qr (from to)
+  "Do a case sensitive query-replace"
+  (interactive "sReplace:
+sWith: ")
+  (let ((case-fold-search nil))
+    (query-replace from to)))
+
 ;; wfp5p key maps
 (define-key global-map "\M-d" 'kill-line)
 (define-key global-map "\M-s" 'save-buffer)
-(define-key global-map "\M-t" 'query-replace)
+(define-key global-map "\M-t" 'wfp5p-qr)
 (define-key global-map "\C-u" 'scroll-down)
 (define-key global-map "\M-u" 'univeral-argument)
 (define-key global-map [f5] 'goto-line)
