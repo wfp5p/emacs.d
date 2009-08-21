@@ -36,9 +36,6 @@
 
 (fset 'perl-mode 'cperl-mode)
 
-;; (keyboard-translate ?\C-h ?\C-?)
-;; (global-set-key "\C-h" 'backward-delete-char)
-
 (setq auto-save-file-name-transforms
    `((".*" ,temporary-file-directory t)))
 
@@ -57,8 +54,9 @@
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-(if (not (window-system))
-    (add-to-list 'initial-frame-alist '(menu-bar-lines . 0)))
+(setq window-system-default-frame-alist
+       '((x (menu-bar-lines . 1) (tool-bar-lines . 0))
+         (nil (menu-bar-lines . 0) (tool-bar-lines . 0))))
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
