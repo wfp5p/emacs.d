@@ -10,11 +10,19 @@
 
 (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
+(autoload 'ack-same "full-ack" nil t)
+(autoload 'ack "full-ack" nil t)
+(autoload 'ack-find-same-file "full-ack" nil t)
+(autoload 'ack-find-file "full-ack" nil t)
+
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(ack-arguments (quote ("--nopager")))
+ '(ack-use-environment nil)
  '(backup-directory-alist (quote ((".*" . "~/.backups"))))
  '(delete-old-versions t)
  '(inhibit-startup-screen t)
