@@ -18,6 +18,7 @@
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
 
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
