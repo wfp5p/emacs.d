@@ -30,7 +30,7 @@ sWith: ")
 (define-key global-map "\M-s" 'save-buffer)
 (define-key global-map "\M-t" 'wfp5p-qr)
 (define-key global-map "\C-u" 'scroll-down)
-(define-key global-map "\M-u" 'univeral-argument)
+(define-key global-map "\M-u" 'universal-argument)
 (define-key global-map [f5] 'goto-line)
 
 (define-key global-map [home] 'seq-home)
