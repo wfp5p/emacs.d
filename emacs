@@ -1,9 +1,12 @@
 (add-to-list 'load-path user-emacs-directory)
 
-
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
 (require 'wfp5p-cperl)
+
+;; turn on ido just for buffer ops
+(unless noninteractive
+	(ido-mode 'buffer))
 
 (autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
 (autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
