@@ -1,5 +1,7 @@
 (add-to-list 'load-path user-emacs-directory)
 
+(require 'generic-x)
+
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
 (require 'wfp5p-cperl)
