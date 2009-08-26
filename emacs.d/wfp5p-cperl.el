@@ -1,5 +1,12 @@
 (autoload 'cperl-set-style "cperl-mode" "set cperl style" t)
 
+(defadvice cperl-electric-paren (after do-indent preactivate)
+
+  "Run cperl-indent-line after a paren"
+  (cperl-indent-line))
+
+(ad-activate 'cperl-electric-paren)
+
 (defun wfp5p-cperl-mode-hook ()
   (setq-default cperl-invalid-face 'default)
   (setq-default cperl-electric-parens nil)
@@ -11,8 +18,6 @@
   (setq-default cperl-hairy t)
   (turn-on-ws-trim)
   (cperl-set-style "BSD"))
-
-
 
 (add-hook 'cperl-mode-hook 'wfp5p-cperl-mode-hook)
 
