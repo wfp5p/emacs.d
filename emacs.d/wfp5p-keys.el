@@ -17,13 +17,18 @@
   (interactive)
   (delete-auto-save-file-if-necessary t))
 
-
 (defun wfp5p-qr (from to)
   "Do a case sensitive query-replace"
   (interactive "sReplace:
 sWith: ")
   (let ((case-fold-search nil))
     (query-replace from to)))
+
+(defun save-buffer-kill-buffer ()
+  "Offer to save buffer, then kill it."
+  (interactive)
+  (save-buffer)
+  (kill-buffer))
 
 ;; wfp5p key maps
 (define-key global-map "\M-d" 'kill-line)
@@ -59,6 +64,7 @@ sWith: ")
 		'("f" search-forward)
 		'("k" kill-line)
 		'("r" insert-file)
+		'("s" save-buffer-kill-buffer)
 		'("u" beginning-of-buffer)
 		'("v" end-of-buffer)
 		'("y" kill-region)
@@ -68,3 +74,4 @@ sWith: ")
 
 (define-key global-map "\C-k" wfp5p-C-k-map)
 (provide 'wfp5p-keys)
+
