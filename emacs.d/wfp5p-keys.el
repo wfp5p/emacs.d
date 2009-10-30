@@ -38,6 +38,10 @@ sWith: ")
 (define-key global-map "\M-u" 'universal-argument)
 (define-key global-map [f5] 'goto-line)
 
+(define-key global-map "\C-x[" 'kmacro-start-macro)
+(define-key global-map "\C-x]" 'kmacro-end-macro)
+
+
 (define-key global-map [home] 'seq-home)
 
 (define-sequential-command seq-end
