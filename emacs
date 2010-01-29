@@ -39,6 +39,7 @@
  '(show-trailing-whitespace t)
  '(small-temporary-file-directory "/dev/shm")
  '(tool-bar-mode nil nil (tool-bar))
+ '(tramp-verbose 8)
  '(transient-mark-mode t)
  '(truncate-lines t)
  '(vc-make-backup-files t)
@@ -55,7 +56,7 @@
 (setq auto-save-file-name-transforms
    `((".*" ,temporary-file-directory t)))
 
-(setq tramp-default-method "scpc")
+;;(setq tramp-default-method "scpc")
 (setq require-final-newline 'query)
 (setq initial-frame-alist '((width . 80)
       			    (height . 50)
@@ -105,3 +106,8 @@
 
 ;;(add-hook 'c-initialization-hook 'wfp5p-make-CR-do-indent)
 
+(require 'autoinsert)
+(auto-insert-mode)
+(setq auto-insert-directory "~/.emacs.d/templates/")
+(setq auto-insert-query nil)
+(define-auto-insert "\\.pl\\'" "autoinsert.pl")
