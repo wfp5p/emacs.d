@@ -106,8 +106,3 @@
 
 ;;(add-hook 'c-initialization-hook 'wfp5p-make-CR-do-indent)
 
-(require 'autoinsert)
-(auto-insert-mode)
-(setq auto-insert-directory "~/.emacs.d/templates/")
-(setq auto-insert-query nil)
-(define-auto-insert "\\.pl\\'" "autoinsert.pl")
