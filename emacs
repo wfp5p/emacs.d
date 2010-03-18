@@ -42,6 +42,7 @@
  '(tramp-verbose 8)
  '(transient-mark-mode t)
  '(truncate-lines t)
+ '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
  '(vc-make-backup-files t)
  '(version-control t))
 
@@ -105,4 +106,3 @@
   (define-key c-mode-base-map "\C-m" 'c-context-line-break))
 
 ;;(add-hook 'c-initialization-hook 'wfp5p-make-CR-do-indent)
-
