@@ -32,6 +32,7 @@
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
  '(isearch-lazy-highlight nil)
+ '(mouse-yank-at-point t)
  '(remote-shell-program "ssh")
  '(search-highlight t)
  '(shadow-info-file "~/.emacs.d/shadows")
