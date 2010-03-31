@@ -107,3 +107,18 @@
   (define-key c-mode-base-map "\C-m" 'c-context-line-break))
 
 ;;(add-hook 'c-initialization-hook 'wfp5p-make-CR-do-indent)
+
+(defun wfp-count-file-buffers ()
+  (let ((x 0))
+    (dolist (buffer (buffer-list))
+      (with-current-buffer buffer
+	(when (buffer-file-name buffer)
+	  (setq x (1+ x)))))
+    x))
+
+(defun wfp-kill-emacs-query-function ()
+   (if (>= (wfp-count-file-buffers) 2)
+       (yes-or-no-p "multiple file buffers; exit anyway? ")
+     (not nil)))
+
+(add-hook 'kill-emacs-query-functions 'wfp-kill-emacs-query-function)
