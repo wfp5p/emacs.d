@@ -29,6 +29,7 @@
  '(ack-use-environment nil)
  '(backup-directory-alist (quote ((".*" . "~/.backups"))))
  '(delete-old-versions t)
+ '(gnus-novice-user nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
  '(isearch-lazy-highlight nil)
@@ -122,3 +123,4 @@
      (not nil)))
 
 (add-hook 'kill-emacs-query-functions 'wfp-kill-emacs-query-function)
+
