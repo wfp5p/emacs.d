@@ -27,7 +27,9 @@ sWith: ")
 (defun save-buffer-kill-buffer ()
   "Offer to save buffer, then kill it."
   (interactive)
-  (save-buffer)
+  (basic-save-buffer)
+  ;; (if (buffer-modified-p)
+  ;;     (save-buffer))
   (kill-buffer))
 
 ;; wfp5p key maps
