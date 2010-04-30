@@ -51,7 +51,7 @@ overlay onto the invisible-areas-list list"
 (defun hide-non-matching-lines (search-text)
   "Hide lines that don't match the specified regexp."
   (interactive "MHide lines not matched by regexp: ")
-  (make-variable-buffer-local 'line-move-ignore-invisible)
+  (make-local-variable 'line-move-ignore-invisible)
   (setq line-move-ignore-invisible t)
   (save-excursion
     (goto-char (point-min))
@@ -72,7 +72,7 @@ overlay onto the invisible-areas-list list"
   (interactive "MHide lines matching regexp: ")
   (if (equal search-text "")
       (show-all-invisible)
-  (make-variable-buffer-local 'line-move-ignore-invisible)
+  (make-local-variable 'line-move-ignore-invisible)
   (setq line-move-ignore-invisible t)
   (save-excursion
     (goto-char (point-min))
@@ -91,7 +91,7 @@ overlay onto the invisible-areas-list list"
 (defun show-all-invisible ()
   "Show all areas hidden by the filter-buffer command"
   (interactive)
-  (mapcar (lambda (overlay) (delete-overlay overlay))
+  (mapc (lambda (overlay) (delete-overlay overlay))
           invisible-areas-list)
   (setq invisible-areas-list ()))
 
