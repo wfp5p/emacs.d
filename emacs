@@ -17,6 +17,7 @@
 (autoload 'ack "full-ack" nil t)
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
+(setq ack-prompt-for-directory t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -124,3 +125,4 @@
 
 (add-hook 'kill-emacs-query-functions 'wfp-kill-emacs-query-function)
 
+   
