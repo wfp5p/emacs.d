@@ -70,6 +70,8 @@ overlay onto the invisible-areas-list list"
 (defun hide-matching-lines  (search-text)
   "Hide lines matching the specified regexp."
   (interactive "MHide lines matching regexp: ")
+  (if (equal search-text "")
+      (show-all-invisible)
   (make-variable-buffer-local 'line-move-ignore-invisible)
   (setq line-move-ignore-invisible t)
   (save-excursion
@@ -84,7 +86,7 @@ overlay onto the invisible-areas-list list"
         (forward-line 1)
         (if (eq (point) (point-max))
             (setq pos nil)
-          (setq pos (re-search-forward search-text nil t)))))))
+          (setq pos (re-search-forward search-text nil t))))))))
 
 (defun show-all-invisible ()
   "Show all areas hidden by the filter-buffer command"
