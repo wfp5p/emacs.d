@@ -13,6 +13,8 @@
 
 (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
+(autoload 'hide-lines "hide-lines" "Hide lines based on a regexp" t)
+
 (autoload 'ack-same "full-ack" nil t)
 (autoload 'ack "full-ack" nil t)
 (autoload 'ack-find-same-file "full-ack" nil t)
