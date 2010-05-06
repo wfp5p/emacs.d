@@ -30,8 +30,6 @@
   ;; If there is more than one, they won't work right.
  '(ack-arguments (quote ("--nopager")))
  '(ack-use-environment nil)
- '(backup-directory-alist (quote ((".*" . "~/.backups"))))
- '(delete-old-versions t)
  '(gnus-novice-user nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
@@ -47,9 +45,23 @@
  '(tramp-verbose 8)
  '(transient-mark-mode t)
  '(truncate-lines t)
- '(uniquify-buffer-name-style (quote post-forward) nil (uniquify))
- '(vc-make-backup-files t)
- '(version-control t))
+ '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
+
+;; set up backup stuff
+(setq
+ backup-by-copying t
+ backup-directory-alist '(("." . "~/.backups"))
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t
+ delete-old-versions t
+ vc-make-backup-files t)
+
+(defun force-backup-of-buffer ()
+  (setq buffer-backed-up nil))
+
+(add-hook 'before-save-hook  'force-backup-of-buffer)
 
 (add-to-list 'auto-mode-alist '("/tmp/snd\\." . text-mode))
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
@@ -126,5 +138,3 @@
      (not nil)))
 
 (add-hook 'kill-emacs-query-functions 'wfp-kill-emacs-query-function)
-
-   
