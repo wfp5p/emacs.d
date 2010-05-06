@@ -71,9 +71,6 @@
 
 (fset 'perl-mode 'cperl-mode)
 
-(setq auto-save-file-name-transforms
-   `((".*" ,temporary-file-directory t)))
-
 ;;(setq tramp-default-method "scpc")
 (setq require-final-newline 'query)
 (setq initial-frame-alist '((width . 80)
