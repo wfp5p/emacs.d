@@ -1,4 +1,4 @@
-(add-to-list 'load-path user-emacs-directory)
+ (add-to-list 'load-path user-emacs-directory)
 
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
@@ -48,6 +48,23 @@
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
 ;; set up backup stuff
+;; (setq noback-alist (list "COMMIT_EDITMSG" "emacs"))
+
+(defun starts-with-p (string1 string2)
+  (string= (substring string1 0 (min (length string1)
+				     (length string2))) string2))
+
+(defun dont-backup-files (filename)
+  (let ((filename-part (file-name-nondirectory filename)))
+    (if (or (starts-with-p filename-part "COMMIT_EDITMSG")
+	    (starts-with-p filename-part "snd.")
+	    (starts-with-p filename-part ".ido.last"))
+	nil
+      (normal-backup-enable-predicate filename))))
+
+
+(setq backup-enable-predicate 'dont-backup-files)
+
 (setq
  backup-by-copying t
  backup-directory-alist '(("." . "~/.backups"))
