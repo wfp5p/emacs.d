@@ -32,6 +32,18 @@ sWith: ")
   ;;     (save-buffer))
   (kill-buffer))
 
+(defun mark-end-of-line (&optional arg)
+  "Put mark at end of line. If this command is repeated, it marks
+the next ARG lines after the ones already marked."
+  (interactive "p")
+  (push-mark
+   (save-excursion
+     (if (and (eq last-command this-command) (mark t))
+	 (goto-char (mark)))
+     (end-of-line arg)
+     (point))
+   nil t))
+
 ;; wfp5p key maps
 (define-key global-map "\M-d" 'kill-line)
 (define-key global-map "\M-s" 'save-buffer)
