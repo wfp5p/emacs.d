@@ -1,4 +1,5 @@
 (require 'sequential-command)
+(require 'thingatpt)
 
 (autoload 'zap-up-to-char "misc" "zap up to char" t)
 
@@ -44,7 +45,13 @@ the next ARG lines after the ones already marked."
      (point))
    nil t))
 
+(defun isearch-yank-symbol ()
+  "Pull next symbol from buffer into search string."
+  (interactive)
+  (isearch-yank-internal (lambda () (forward-symbol 1) (point))))
+
 ;; wfp5p key maps
+(define-key isearch-mode-map "\C-x" 'isearch-yank-symbol)
 (define-key global-map "\M-d" 'kill-line)
 (define-key global-map "\M-s" 'save-buffer)
 (define-key global-map "\M-t" 'wfp5p-qr)
