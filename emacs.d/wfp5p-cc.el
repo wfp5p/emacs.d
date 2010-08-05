@@ -1,5 +1,5 @@
-(setq wfp5p-modes-alist '( ("/lv2/users/wfp5p/kernel/linux-2.6" . "linux")
-			   ("/tmp" . "wfp5p") ))
+(setq wfp5p-modes-alist '( ("/lv2/users/wfp5p/kernel" . "linux")))
+
 
 (defconst wfp5p-c-style
   '("bsd"
@@ -11,7 +11,7 @@
   (setq-default c-electric-flag t)
   (setq-default c-auto-newline t)
   (turn-on-ws-trim)
-  (let ((default-mode "wfp5p")
+  (let ((default-mode "linux")
 	(mode)
 	(name))
     (setq name (file-truename buffer-file-name))
