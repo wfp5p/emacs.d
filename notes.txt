@@ -4,7 +4,11 @@ emacs -batch -l /home/wfp5p/.emacs -f batch-byte-compile /home/wfp5p/.emacs.d/*.
 
 or use batch-byte-compile-if-not-done
 
--- 
+--
 
 add (normal-erase-is-backspace-mode 1)
 for securecrt
+
+--
+
+symlink emacs to ~/.emacs 
