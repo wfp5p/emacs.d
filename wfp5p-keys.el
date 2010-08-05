@@ -48,7 +48,13 @@ the next ARG lines after the ones already marked."
 (defun isearch-yank-symbol ()
   "Pull next symbol from buffer into search string."
   (interactive)
-  (isearch-yank-internal (lambda () (forward-symbol 1) (point))))
+  (isearch-yank-string
+   (save-excursion
+     (and (not isearch-forward) isearch-other-end
+          (goto-char isearch-other-end))
+     (buffer-substring-no-properties
+      (beginning-of-thing 'symbol) (end-of-thing 'symbol)))))
+
 
 ;; wfp5p key maps
 (define-key isearch-mode-map "\C-x" 'isearch-yank-symbol)
