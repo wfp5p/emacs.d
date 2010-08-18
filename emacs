@@ -21,6 +21,8 @@
 (autoload 'ack-find-file "full-ack" nil t)
 (setq ack-prompt-for-directory t)
 
+(setq puppet-indent-level 4)
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (custom-set-variables
