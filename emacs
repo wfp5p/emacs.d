@@ -121,16 +121,7 @@
  '(font-lock-type-face ((((class color) (min-colors 88) (background light)) (:foreground "khaki4"))))
  '(font-lock-variable-name-face ((((class color) (min-colors 88) (background light)) (:foreground "NavyBlue")))))
 
-(defun wfp5p-replace-typedef (from-str to-str)
-   "Delete the following character up to next close paren"
-   (interactive "sReplace string: \ns%s becomes: ")
-   (setq search-string (concat "\\b" from-str "\\b"))
-   (save-excursion
-     (while (re-search-forward search-string nil t)
-       (replace-match to-str t t))))
-
 (put 'downcase-region 'disabled nil)
-
 
 (defun wfp5p-make-CR-do-indent ()
   (define-key c-mode-base-map "\C-m" 'c-context-line-break))
