@@ -112,7 +112,7 @@
   ;; If there is more than one, they won't work right.
  '(cperl-array-face ((default nil) (nil nil)))
  '(cperl-hash-face ((((class color) (background light)) nil)))
- '(cperl-nonoverridable-face ((((class color) (background light)) (:foreground "green"))))
+ '(cperl-nonoverridable-face ((t (:foreground "blue"))))
  '(font-lock-builtin-face ((((class color) (min-colors 88) (background light)) (:foreground "magenta"))))
  '(font-lock-comment-face ((((class color) (min-colors 88) (background light)) (:foreground "red2"))))
  '(font-lock-keyword-face ((((class color) (min-colors 8)) (:foreground "blue" :weight normal))))
