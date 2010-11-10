@@ -106,3 +106,16 @@ the next ARG lines after the ones already marked."
 (define-key global-map "\C-k" wfp5p-C-k-map)
 (provide 'wfp5p-keys)
 
+;; (defun revert-all-buffers ()
+;;           "Refreshes all open buffers from their respective files"
+;;           (interactive)
+;;           (let* ((list (buffer-list))
+;;                  (buffer (car list)))
+;;             (while buffer
+;;               (when (and (buffer-file-name buffer)
+;;                          (not (buffer-modified-p buffer)))
+;;                 (set-buffer buffer)
+;;                 (revert-buffer t t t))
+;;               (setq list (cdr list))
+;;               (setq buffer (car list))))
+;;           (message "Refreshed open files"))
