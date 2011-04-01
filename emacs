@@ -2,7 +2,7 @@
 
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
-(require 'wfp5p-cperl)
+(require 'wfp5p-cperl2)
 (require 'tbemail)
 
 ;; turn on ido just for buffer ops
@@ -48,6 +48,11 @@
  '(tramp-verbose 8)
  '(transient-mark-mode t)
  '(truncate-lines t)
+ '(cperl-close-paren-offset -4)
+ '(cperl-continued-statement-offset 4)
+ '(cperl-indent-level 4)
+ '(cperl-indent-parens-as-block t)
+ '(cperl-tab-always-indent t)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
 ;; set up backup stuff
@@ -85,7 +90,8 @@
 ;; turn off higlighting
 ;; (global-font-lock-mode nil)
 
-(fset 'perl-mode 'cperl-mode)
+;; Use cperl mode instead of the default perl mode
+(defalias 'perl-mode 'cperl-mode)
 
 ;;(setq tramp-default-method "scpc")
 (setq require-final-newline 'query)
