@@ -18,6 +18,14 @@
 ;; cperl-lazy-help-time
 
 (defun wfp5p-cperl-mode-hook ()
+; overwrite the regular abbrev table for cperl
+  (let ((prev-a-c abbrevs-changed))
+    (clear-abbrev-table cperl-mode-abbrev-table)
+    (define-abbrev-table 'cperl-mode-abbrev-table '(
+        ("pshebang"   "#! /usr/bin/perl\n\nuse strict;\n" nil 1)
+	))
+    (setq abbrevs-changed prev-a-c))
+  (abbrev-mode 1)
   (setq-default cperl-invalid-face 'default)
   (setq-default cperl-electric-parens 'null)
   (setq-default cperl-electric-keywords 'null)

@@ -2,7 +2,7 @@
 
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
-(require 'wfp5p-cperl2)
+(require 'wfp5p-cperl)
 (require 'tbemail)
 
 ;; turn on ido just for buffer ops
