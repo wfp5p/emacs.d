@@ -48,11 +48,11 @@
  '(tramp-verbose 8)
  '(transient-mark-mode t)
  '(truncate-lines t)
- '(cperl-close-paren-offset -4)
- '(cperl-continued-statement-offset 4)
- '(cperl-indent-level 4)
- '(cperl-indent-parens-as-block t)
- '(cperl-tab-always-indent t)
+ ;; '(cperl-close-paren-offset -4)
+ ;; '(cperl-continued-statement-offset 4)
+ ;; '(cperl-indent-level 4)
+ ;; '(cperl-indent-parens-as-block t)
+ ;; '(cperl-tab-always-indent t)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
 ;; set up backup stuff
