@@ -48,11 +48,6 @@
  '(tramp-verbose 8)
  '(transient-mark-mode t)
  '(truncate-lines t)
- ;; '(cperl-close-paren-offset -4)
- ;; '(cperl-continued-statement-offset 4)
- ;; '(cperl-indent-level 4)
- ;; '(cperl-indent-parens-as-block t)
- ;; '(cperl-tab-always-indent t)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
 ;; set up backup stuff
@@ -148,3 +143,9 @@
      (not nil)))
 
 (add-hook 'kill-emacs-query-functions 'wfp-kill-emacs-query-function)
+
+;; (defun wfp-emerge-hook ()
+;;   (yes-or-no-p "emerge hook ")
+;; )
+
+;; (add-hook 'emerge-startup-hook 'wfp-emerge-hook)
