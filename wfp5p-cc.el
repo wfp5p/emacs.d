@@ -1,6 +1,5 @@
 (setq wfp5p-modes-alist '( ("/lv2/users/wfp5p/kernel" . "linux")))
 
-
 (defconst wfp5p-c-style
   '("bsd"
     (c-basic-offset . 4)))
@@ -10,6 +9,8 @@
 (defun wfp5p-c-mode-hook ()
   (setq-default c-electric-flag t)
   (setq-default c-auto-newline t)
+  (define-key c-mode-map "{" 'self-insert-command)
+;;  (define-key c-mode-map "}" 'self-insert-command)
   (turn-on-ws-trim)
   (let ((default-mode "linux")
 	(mode)
