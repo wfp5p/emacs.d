@@ -51,33 +51,33 @@
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
 ;; set up backup stuff
-(setq noback-regexp (concat "^" (regexp-opt
-				 '("^COMMIT_EDITMSG" "snd\."
-				   "^\.ido\.last"))))
+;; (setq noback-regexp (concat "^" (regexp-opt
+;; 				 '("^COMMIT_EDITMSG" "snd\."
+;; 				   "^\.ido\.last"))))
 
-(defun dont-backup-files (filename)
-  (let ((filename-part (file-name-nondirectory filename)))
-    (if (string-match noback-regexp filename-part)
-	nil
-      (normal-backup-enable-predicate filename))))
+;; (defun dont-backup-files (filename)
+;;   (let ((filename-part (file-name-nondirectory filename)))
+;;     (if (string-match noback-regexp filename-part)
+;; 	nil
+;;       (normal-backup-enable-predicate filename))))
 
 
-(setq backup-enable-predicate 'dont-backup-files)
+;; (setq backup-enable-predicate 'dont-backup-files)
 
-(setq
- backup-by-copying t
- backup-directory-alist '(("." . "~/.backups"))
- delete-old-versions t
- kept-new-versions 6
- kept-old-versions 2
- version-control t
- delete-old-versions t
- vc-make-backup-files t)
+;; (setq
+;;  backup-by-copying t
+;;  backup-directory-alist '(("." . "~/.backups"))
+;;  delete-old-versions t
+;;  kept-new-versions 6
+;;  kept-old-versions 2
+;;  version-control t
+;;  delete-old-versions t
+;;  vc-make-backup-files t)
 
-(defun force-backup-of-buffer ()
-  (setq buffer-backed-up nil))
+;; (defun force-backup-of-buffer ()
+;;   (setq buffer-backed-up nil))
 
-(add-hook 'before-save-hook  'force-backup-of-buffer)
+;; (add-hook 'before-save-hook  'force-backup-of-buffer)
 
 (add-to-list 'auto-mode-alist '("/tmp/snd\\." . text-mode))
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
