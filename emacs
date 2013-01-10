@@ -50,6 +50,9 @@
  '(truncate-lines t)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 
+;; turn off backups
+(setq make-backup-files nil)
+
 ;; set up backup stuff
 ;; (setq noback-regexp (concat "^" (regexp-opt
 ;; 				 '("^COMMIT_EDITMSG" "snd\."
