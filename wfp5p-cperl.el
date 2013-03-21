@@ -22,7 +22,7 @@
   (let ((prev-a-c abbrevs-changed))
     (clear-abbrev-table cperl-mode-abbrev-table)
     (define-abbrev-table 'cperl-mode-abbrev-table '(
-        ("pshebang"   "#! /usr/bin/perl\n\nuse strict;\nuse feature qw(say);" nil 1)
+        ("pshebang"   "#! /usr/bin/perl\n\nuse strict;\nuse feature ':5.10';" nil 1)
 	))
     (setq abbrevs-changed prev-a-c))
   (abbrev-mode 1)
