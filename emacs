@@ -123,7 +123,8 @@
  '(font-lock-keyword-face ((((class color) (min-colors 8)) (:foreground "blue" :weight normal))))
  '(font-lock-string-face ((((class color) (min-colors 88) (background light)) nil)))
  '(font-lock-type-face ((((class color) (min-colors 88) (background light)) (:foreground "khaki4"))))
- '(font-lock-variable-name-face ((((class color) (min-colors 88) (background light)) (:foreground "NavyBlue")))))
+ '(font-lock-variable-name-face ((((class color) (min-colors 88) (background light)) (:foreground "NavyBlue"))))
+ '(region ((t (:background "gray85" :foreground "black")))))
 
 (put 'downcase-region 'disabled nil)
 
