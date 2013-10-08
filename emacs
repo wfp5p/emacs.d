@@ -153,3 +153,5 @@
 ;; )
 
 ;; (add-hook 'emerge-startup-hook 'wfp-emerge-hook)
+
+(setq rpm-spec-user-mail-address "wfp5p@worldbroken.com")
