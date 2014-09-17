@@ -1,4 +1,4 @@
-(setq wfp5p-modes-alist '( ("/lv2/users/wfp5p/kernel" . "linux")))
+(setq wfp5p-modes-alist '( ("/lv2/work/kernel" . "linux")))
 
 (defconst wfp5p-c-style
   '("bsd"
