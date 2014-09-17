@@ -92,6 +92,12 @@
 			    (tool-bar-lines . nil)))
 (setq default-frame-alist initial-frame-alist)
 
+(if (getenv "EMACS_LT")
+    (progn (set-face-attribute 'default nil :height 80)
+;;    (normal-erase-is-backspace-mode 1)
+	   (push '(height . 40) initial-frame-alist))
+  (push '(height . 50) initial-frame-alist))
+
 (setq-default bc-bookmark-file (expand-file-name (concat user-emacs-directory "breadcrumb")))
 
 
