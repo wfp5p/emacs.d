@@ -3,7 +3,7 @@
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
 (require 'wfp5p-cperl)
-(require 'tbemail)
+;;(require 'tbemail)
 
 ;; turn on ido just for buffer ops
 (unless noninteractive
@@ -84,6 +84,7 @@
 
 (add-to-list 'auto-mode-alist '("/tmp/snd\\." . text-mode))
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
+(add-to-list 'auto-mode-alist '("\.eml$" . text-mode))
 
 ;; turn off higlighting
 ;; (global-font-lock-mode nil)
