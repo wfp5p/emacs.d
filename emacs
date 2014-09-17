@@ -16,12 +16,6 @@
 
 (autoload 'hide-lines "hide-lines" "Hide lines based on a regexp" t)
 
-(autoload 'ack-same "full-ack" nil t)
-(autoload 'ack "full-ack" nil t)
-(autoload 'ack-find-same-file "full-ack" nil t)
-(autoload 'ack-find-file "full-ack" nil t)
-(setq ack-prompt-for-directory t)
-
 (setq puppet-indent-level 4)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -31,8 +25,6 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(ack-arguments (quote ("--nopager")))
- '(ack-use-environment nil)
  '(gnus-novice-user nil)
  '(inhibit-startup-screen t)
  '(initial-scratch-message nil)
