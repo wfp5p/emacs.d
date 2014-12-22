@@ -1,4 +1,5 @@
- (add-to-list 'load-path user-emacs-directory)
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
+;;(add-to-list 'load-path user-emacs-directory)
 
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
