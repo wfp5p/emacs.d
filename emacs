@@ -4,7 +4,9 @@
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
 (require 'wfp5p-cperl)
-;;(require 'tbemail)
+(require 'yaml-mode)
+
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;; turn on ido just for buffer ops
 (unless noninteractive
