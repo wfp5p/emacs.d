@@ -13,6 +13,12 @@
 (autoload 'bc-list "breadcrumb" "List all bookmarks in menu mode." t)
 (autoload 'bc-clear "breadcrumb" "Clear all bookmarks."  t)
 
+(defun wfp5p-revert-buffer ()
+  "Do revert-buffer on current buffer."
+  (interactive)
+  (revert-buffer nil t t)
+  (message (concat "Reverted buffer " (buffer-name))))
+
 (defun wfp5p-nuke-auto-save ()
   "Delete the current buffers auto-save file."
   (interactive)
@@ -64,6 +70,7 @@ the next ARG lines after the ones already marked."
 (define-key global-map "\C-u" 'scroll-down)
 (define-key global-map "\M-u" 'universal-argument)
 (define-key global-map [f5] 'goto-line)
+(define-key global-map [f7] 'wfp5p-revert-buffer)
 
 (define-key global-map "\C-x[" 'kmacro-start-macro)
 (define-key global-map "\C-x]" 'kmacro-end-macro)
