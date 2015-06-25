@@ -22,7 +22,8 @@
 (defun wfp5p-nuke-auto-save ()
   "Delete the current buffers auto-save file."
   (interactive)
-  (delete-auto-save-file-if-necessary t))
+  (delete-auto-save-file-if-necessary t)
+  (message (concat "Nuked autosave for " (buffer-name))))
 
 (defun wfp5p-qr (from to)
   "Do a case sensitive query-replace"
