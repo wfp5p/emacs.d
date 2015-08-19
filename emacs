@@ -7,6 +7,7 @@
 (require 'yaml-mode)
 
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.eml$" . text-mode))
 
 ;; turn on ido just for buffer ops
 (unless noninteractive
