@@ -5,6 +5,7 @@
 (require 'wfp5p-keys)
 (require 'wfp5p-cperl)
 (require 'yaml-mode)
+(require 'go-mode)
 
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.eml$" . text-mode))
