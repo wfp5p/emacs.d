@@ -7,6 +7,10 @@
 (require 'yaml-mode)
 (require 'go-mode)
 
+(add-hook 'go-mode-hook
+	  (lambda ()
+	    (setq tab-width 4)))
+
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.eml$" . text-mode))
 
