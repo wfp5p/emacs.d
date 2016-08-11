@@ -92,7 +92,7 @@
 ;; Use cperl mode instead of the default perl mode
 (defalias 'perl-mode 'cperl-mode)
 
-;;(setq tramp-default-method "scpc")
+(setq tramp-default-method "ssh")
 (setq require-final-newline 'query)
 (setq initial-frame-alist '((width . 80)
       			    (height . 50)
