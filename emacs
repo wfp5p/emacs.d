@@ -7,9 +7,12 @@
 (require 'yaml-mode)
 (require 'go-mode)
 
+;; go-mode config stuff
 (add-hook 'go-mode-hook
 	  (lambda ()
 	    (setq tab-width 4)))
+(setq gofmt-command "goimports")
+(add-hook 'before-save-hook 'gofmt-before-save)
 
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.eml$" . text-mode))
