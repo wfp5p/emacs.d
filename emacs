@@ -4,7 +4,6 @@
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
 (require 'wfp5p-cperl)
-(require 'yaml-mode)
 (require 'go-mode)
 
 ;; go-mode config stuff
@@ -14,7 +13,6 @@
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.eml$" . text-mode))
 
 ;; turn on ido just for buffer ops
