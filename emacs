@@ -4,6 +4,7 @@
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
 (require 'wfp5p-cperl)
+(require 'wfp5p-python)
 (require 'go-mode)
 
 ;; go-mode config stuff
