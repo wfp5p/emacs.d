@@ -1,6 +1,8 @@
 (require 'sequential-command)
 (require 'thingatpt)
 
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 (autoload 'zap-up-to-char "misc" "zap up to char" t)
 
 ;; breadcrumbs
