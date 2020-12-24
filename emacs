@@ -109,9 +109,6 @@
 	   (push '(height . 40) initial-frame-alist))
   (push '(height . 50) initial-frame-alist))
 
-(setq-default bc-bookmark-file (expand-file-name (concat user-emacs-directory "breadcrumb")))
-
-
 ;;(add-hook 'c-mode-hook 'turn-on-font-lock)
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
