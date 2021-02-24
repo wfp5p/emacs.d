@@ -96,6 +96,7 @@
 (defalias 'perl-mode 'cperl-mode)
 
 (setq tramp-default-method "ssh")
+(customize-set-variable 'tramp-syntax 'simplified)
 (setq require-final-newline 'query)
 (setq initial-frame-alist '((width . 80)
       			    (height . 50)
