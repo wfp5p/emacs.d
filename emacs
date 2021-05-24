@@ -7,6 +7,15 @@
 (require 'wfp5p-python)
 (require 'go-mode)
 
+
+;; there has to be an easier way!
+(defun wfp5p-conf-mode-hook ()
+  (font-lock-mode 0)
+  )
+
+(add-hook 'conf-mode-hook 'wfp5p-conf-mode-hook)
+
+
 ;; go-mode config stuff
 (add-hook 'go-mode-hook
 	  (lambda ()
