@@ -9,11 +9,14 @@
 
 
 ;; there has to be an easier way!
-(defun wfp5p-conf-mode-hook ()
+(defun wfp5p-no-color-mode-hook ()
   (font-lock-mode 0)
   )
 
-(add-hook 'conf-mode-hook 'wfp5p-conf-mode-hook)
+(if (not (eq window-system 'x))
+    (progn (add-hook 'conf-mode-hook 'wfp5p-no-color-mode-hook)
+	   (add-hook 'sh-mode-hook 'wfp5p-no-color-mode-hook))
+)
 
 
 ;; go-mode config stuff
