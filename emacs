@@ -61,7 +61,7 @@
  '(tramp-verbose 8)
  '(transient-mark-mode t)
  '(truncate-lines t)
- '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
+ '(uniquify-buffer-name-style 'post-forward nil (uniquify)))
 
 ;; turn off backups
 (setq make-backup-files nil)
