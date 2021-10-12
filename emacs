@@ -62,7 +62,6 @@
  '(small-temporary-file-directory "/dev/shm")
  '(tool-bar-mode nil nil (tool-bar))
  '(tramp-verbose 8)
- '(transient-mark-mode t)
  '(truncate-lines t)
  '(uniquify-buffer-name-style 'post-forward nil (uniquify)))
 
