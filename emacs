@@ -10,6 +10,10 @@
 (require 'wfp5p-python)
 (require 'wfp5p-go)
 
+;; Use cperl mode instead of the default perl mode
+(defalias 'perl-mode 'cperl-mode)
+
+(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
 
 ;; there has to be an easier way!
 (defun wfp5p-no-color-mode-hook ()
@@ -25,12 +29,9 @@
 (unless noninteractive
 	(ido-mode 'buffer))
 
-
 (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
 (autoload 'hide-lines "hide-lines" "Hide lines based on a regexp" t)
-
-(setq puppet-indent-level 4)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -58,44 +59,6 @@
 
 ;; turn off backups
 (setq make-backup-files nil)
-
-;; set up backup stuff
-;; (setq noback-regexp (concat "^" (regexp-opt
-;; 				 '("^COMMIT_EDITMSG" "snd\."
-;; 				   "^\.ido\.last"))))
-
-;; (defun dont-backup-files (filename)
-;;   (let ((filename-part (file-name-nondirectory filename)))
-;;     (if (string-match noback-regexp filename-part)
-;; 	nil
-;;       (normal-backup-enable-predicate filename))))
-
-
-;; (setq backup-enable-predicate 'dont-backup-files)
-
-;; (setq
-;;  backup-by-copying t
-;;  backup-directory-alist '(("." . "~/.backups"))
-;;  delete-old-versions t
-;;  kept-new-versions 6
-;;  kept-old-versions 2
-;;  version-control t
-;;  delete-old-versions t
-;;  vc-make-backup-files t)
-
-;; (defun force-backup-of-buffer ()
-;;   (setq buffer-backed-up nil))
-
-;; (add-hook 'before-save-hook  'force-backup-of-buffer)
-
-(add-to-list 'auto-mode-alist '("/tmp/snd\\." . text-mode))
-(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
-
-;; turn off higlighting
-;; (global-font-lock-mode nil)
-
-;; Use cperl mode instead of the default perl mode
-(defalias 'perl-mode 'cperl-mode)
 
 (setq tramp-default-method "ssh")
 (customize-set-variable 'tramp-syntax 'simplified)
