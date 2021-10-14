@@ -77,7 +77,7 @@
   "Returns number of times `this-command' was executed.
 It also updates `seq-start-position'."
   (if (eq last-command this-command)
-      (incf seq-store-count)
+      (cl-incf seq-store-count)
     (setq seq-start-position  (cons (point) (window-start))
           seq-store-count     0)))
 
