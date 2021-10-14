@@ -1,6 +1,9 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 ;;(add-to-list 'load-path user-emacs-directory)
 
+(autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
+(autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
+
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
 (require 'wfp5p-cperl)
@@ -22,8 +25,6 @@
 (unless noninteractive
 	(ido-mode 'buffer))
 
-(autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
-(autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
 
 (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 

@@ -1,11 +1,12 @@
-;; ws-trim.el --- Tools and minor mode to trim whitespace on text lines
+;;; ws-trim.el --- Tools and minor mode to trim whitespace on text lines
 
-;; Copyright (C) 1997 Martin Stjernholm
+;; Copyright (C) 1997-2012 Martin Stjernholm
 
 ;; Author: Martin Stjernholm <mast@lysator.liu.se>
 ;; Created: 8 Apr 1997
-;; Version: 1.0
+;; Version: 1.4
 ;; Keywords: wp
+;; X-URL: ftp://ftp.lysator.liu.se/pub/emacs/ws-trim.el
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -43,9 +44,7 @@
 ;; WS Trim mode should be on or off in every buffer.  You can control
 ;; this through the variable `ws-trim-global-modes'.
 ;;
-;; This package has been tested with GNU Emacs version 19.34.  It
-;; won't run in versions older than 19.23.  Versions in between and
-;; XEmacs are currently untested.
+;; This package should work with GNU Emacs version 21 and later.
 ;;
 ;; Comments, suggestions and bug reports are always welcome.
 ;;
@@ -53,40 +52,40 @@
 ;; * Global WS Trim mode is modeled after Global Font Lock mode in
 ;;   font-lock.el by "jwz, then rms, then sm <simon@gnu.ai.mit.edu>".
 
-;; LCD Archive Entry:
-;; ws-trim|Martin Stjernholm|mast@lysator.liu.se|
-;; Tools and minor mode to trim whitespace on text lines.|
-;; 8-Apr-97|Revision: 1.0|<ftp://ftp.lysator.liu.se/pub/emacs/ws-trim.el>|
-
 ;;; Change log:
 
+;; Sat Feb 11 17:51:15 CET 2012       Martin Stjernholm <mast@lysator.liu.se>
+;;	*  Removed long-since obsolete function make-local-hook which
+;;	   no longer exists in Emacs 24.  Thanks to Phil Sainty for
+;;	   pointing this out.  Also dropped some more old compat code -
+;;	   the baseline is now Emacs 21.
+;;
+;; Wed Nov 12 18:55:48 CET 2003       Martin Stjernholm <mast@lysator.liu.se>
+;;	*  Added an indent-tabs-mode sensitive function ws-trim-leading.
+;;
+;; Thu Jun 19 01:26:51 CEST 2003      Martin Stjernholm <mast@lysator.liu.se>
+;;	*  Made ws-trim-method-hook buffer local.
+;;
+;; Fri Oct  5 01:04:17 CEST 2001      Martin Stjernholm <mast@lysator.liu.se>
+;;	*  Check if the trimming would have any effect before doing it,
+;;	   to avoid getting buffers modified unnecessarily.
+;;
+;; Sat May 15 19:15:24 CEST 1999      Martin Stjernholm <mast@lysator.liu.se>
+;;	*  Prompt for the trim method when a prefix arg is passed to
+;;	   ws-trim-line, ws-trim-region and ws-trim-buffer.
+;;
 ;; Tue Apr  8 00:28:58 MET DST 1997   Martin Stjernholm <mast@lysator.liu.se>
-;;	* First public release.
+;;	*  First public release.
 
 ;;; Code:
 
 (eval-when-compile
   (require 'cl-lib))			; Some handy macros.
 
-
-;;; WS Trim internal variables
-
-(defvar ws-trim-changed-region nil)
-;; A cons of two markers marking the line region that was last
-;; changed, nil if no change has occurred, `first-change' if the
-;; buffer is about to be modified for the first time and
-;; `ws-trim-level' >= 2, or `ignore' if a ws-trim function is changing
-;; it.
-
-(defvar ws-trim-buffers nil)
-;; List of buffers waiting to be processed by
-;; `global-ws-trim-init-ws-trim'.
-
-
 ;;; WS Trim tools
 
 ;;;###autoload
-(defvar ws-trim-method-hook 'ws-trim-trailing
+(defvar ws-trim-method-hook '(ws-trim-leading ws-trim-trailing)
   "*The kind of trimming done by the WS Trim mode and functions.
 A single or a list of functions which are run on each line that's
 getting trimmed.  Supplied trim functions:
@@ -94,85 +93,108 @@ getting trimmed.  Supplied trim functions:
 `ws-trim-trailing'        Delete trailing whitespace.
 `ws-trim-leading-spaces'  Replace unnecessary leading spaces with tabs.
 `ws-trim-leading-tabs'    Replace leading tabs with spaces.
+`ws-trim-leading'         Replace leading tabs or spaces according to
+                          `indent-tabs-mode'.  If it's nil, leading
+                          tabs are replaced with spaces, otherwise
+                          it's the other way around.
 `ws-trim-tabs'            Replace all tabs with spaces.
 
 This is a perfectly normal hook run by `run-hooks' and custom
 functions can of course be used.  There's no inherent restriction to
 just whitespace trimming either, for that matter.  Each function
 should modify the current line and leave point somewhere on it.")
+(make-variable-buffer-local 'ws-trim-method-hook)
 
 ;;;###autoload
-(defun ws-trim-line ()
+(defun ws-trim-line (arg)
   "Trim whitespace on the current line.
-Do this according to the hook `ws-trim-method-hook'."
-  (interactive "*")
-  (let ((ws-trim-changed-region 'ignore)) ; ws-trim-after-change disabled now.
+Do this according to the hook `ws-trim-method-hook'.  With a prefix
+argument, ask for the trim method to use instead."
+  (interactive "*P")
+  (let ((ws-trim-method-hook (if arg (ws-trim-ask-method) ws-trim-method-hook))
+	(ws-trim-changed-region 'ignore)) ; ws-trim-after-change disabled now.
     (save-excursion
       (run-hooks 'ws-trim-method-hook))))
 
 ;;;###autoload
-(defun ws-trim-region (from to)
+(defun ws-trim-region (arg)
   "Trim whitespace on each line in the region.
-Do this according to the hook `ws-trim-method-hook'."
-  (interactive "*r")
-  (let ((ws-trim-changed-region 'ignore)) ; ws-trim-after-change disabled now.
-    (save-excursion
-      (save-restriction
-	(narrow-to-region from to)
-	(goto-char (point-min))
-	(while (not (eobp))
-	  (run-hooks 'ws-trim-method-hook) ; (ws-trim-line) inlined.
-	  (forward-line))))))
+Do this according to the hook `ws-trim-method-hook'.  With a prefix
+argument, ask for the trim method to use instead."
+  (interactive "*P")
+  (let ((ws-trim-method-hook (if arg (ws-trim-ask-method) ws-trim-method-hook)))
+    (ws-trim-region-1 (mark) (point))))
 
 ;;;###autoload
-(defun ws-trim-buffer ()
+(defun ws-trim-buffer (arg)
   "Trim whitespace on each line in the buffer.
-Do this according to the hook `ws-trim-method-hook'."
-  (interactive "*")
+Do this according to the hook `ws-trim-method-hook'.  With a prefix
+argument, ask for the trim method to use instead."
+  (interactive "*P")
   (ws-trim-reset-changed-region nil)
-  (ws-trim-region (point-min) (point-max)))
+  (let ((ws-trim-method-hook (if arg (ws-trim-ask-method) ws-trim-method-hook)))
+    (ws-trim-region-1 (point-min) (point-max))))
 
 (defun ws-trim-trailing ()
   "Delete trailing whitespace on current line.
 Normally used in `ws-trim-method-hook'."
   (end-of-line)
-  (delete-horizontal-space))
+  (if (memq (preceding-char) '(?\  ?\t))
+      (delete-horizontal-space)))
 
 (defun ws-trim-leading-spaces ()
   "Replace unnecessary leading spaces with tabs on current line.
 Normally used in `ws-trim-method-hook'."
   (let* ((indent-tabs-mode t)
-	 col)
+	 (col (current-indentation))
+	 (tab-col (* (/ col tab-width) tab-width)))
     (beginning-of-line)
-    (skip-chars-forward " \t")
-    (setq col (current-column))
-    (delete-horizontal-space)
-    (indent-to col)))
+    (skip-chars-forward "\t")
+    (when (/= (current-column) tab-col)
+      (delete-horizontal-space)
+      (indent-to col))))
 
 (defun ws-trim-leading-tabs ()
   "Replace leading tabs with spaces on current line.
 Normally used in `ws-trim-method-hook'."
-  (let* ((indent-tabs-mode nil)
-	 col)
+  (let ((indent-tabs-mode nil)
+	(col (current-indentation)))
     (beginning-of-line)
-    (skip-chars-forward " \t")
-    (setq col (current-column))
-    (delete-horizontal-space)
-    (indent-to col)))
+    (skip-chars-forward " ")
+    (when (/= (current-column) col)
+      (delete-horizontal-space)
+      (indent-to col))))
+
+(defun ws-trim-leading ()
+  "Fix the indentation on the current line according to `indent-tabs-mode'.
+If it's nil, replace leading tabs with spaces.  Otherwise replace
+unnecessary leading spaces with tabs."
+  (if indent-tabs-mode
+      (ws-trim-leading-spaces)
+    (ws-trim-leading-tabs)))
 
 (defun ws-trim-tabs ()
   "Replace all tabs with spaces on current line.
 Normally used in `ws-trim-method-hook'."
-  (let* ((indent-tabs-mode nil)
-	 col)
+  (let ((indent-tabs-mode nil)
+	col)
     (beginning-of-line)
-    (skip-chars-forward "^\t\n")
-    (while (not (eolp))
-      (skip-chars-forward " \t")
-      (setq col (current-column))
-      (delete-horizontal-space)
-      (indent-to col)
-      (skip-chars-forward "^\t\n"))))
+    (while (progn
+	     (skip-chars-forward "^\t\n")
+	     (not (eolp)))
+      (skip-chars-forward " ")
+      (when (eq (following-char) ?\t)
+	(skip-chars-forward " \t")
+	(setq col (current-column))
+	(delete-horizontal-space)
+	(indent-to col)))))
+
+(defconst ws-trim-methods '(ws-trim-trailing
+			    ws-trim-leading-spaces
+			    ws-trim-leading-tabs
+			    ws-trim-leading
+			    ws-trim-tabs)
+  "List of known trim methods.")
 
 ;;; WS Trim mode
 
@@ -219,7 +241,7 @@ If 2, all lines in the buffer are trimmed when the buffer is modified
 for the first time.
 If 1, only modified lines are trimmed.
 If 0, only single modified lines are trimmed, i.e. operations that
-modify more than one line doesn't cause any trimming (newline is an
+modify more than one line don't cause any trimming (newline is an
 exception).
 
 The current line is never trimmed on any level, unless the buffer is
@@ -264,13 +286,6 @@ See the variable `ws-trim-mode' for further info on this mode."
   (ws-trim-mode 1))
 
 ;;;###autoload
-(defun turn-off-ws-trim ()
-  "Unconditionally turn off WS Trim mode.
-See the variable `ws-trim-mode' for further info on this mode."
-  (interactive)
-  (ws-trim-mode nil))
-
-;;;###autoload
 (defun ws-trim-mode (&optional arg)
   "Toggle WS Trim mode, which automatically trims whitespace on lines.
 A positive prefix argument turns the mode on, any other prefix turns
@@ -286,18 +301,15 @@ See the variable docstring for details about this mode."
 	  (progn
 	    (error "`ws-trim-level' must be an integer")
 	    (setq ws-trim-mode nil))
-;;	(make-local-hook 'after-change-functions)
 	(add-hook 'after-change-functions 'ws-trim-after-change nil t)
-;;	(make-local-hook 'post-command-hook)
 	(add-hook 'post-command-hook 'ws-trim-post-command nil t)
-;;	(make-local-hook 'first-change-hook)
 	(add-hook 'first-change-hook 'ws-trim-on-first-change nil t)
 	(add-hook 'write-contents-hooks 'ws-trim-on-write)
 	(run-hooks 'ws-trim-mode-hook)
 	(if (or (>= ws-trim-level 3)
 		(and (>= ws-trim-level 2) (buffer-modified-p)))
 	    (or buffer-read-only
-		(ws-trim-buffer))))
+		(ws-trim-region-1 (point-min) (point-max)))))
     (remove-hook 'after-change-functions 'ws-trim-after-change t)
     (remove-hook 'post-command-hook 'ws-trim-post-command t)
     (remove-hook 'first-change-hook 'ws-trim-on-first-change t)
@@ -322,27 +334,36 @@ See the variable docstring for details about this mode."
 ;; Non-nil if there's a newline in current `ws-trim-changed-region'.
 (make-variable-buffer-local 'ws-trim-changed-newline)
 
+(defun ws-trim-ask-method ()
+  (let* ((alist (mapcar (lambda (fn) (cons (symbol-name fn) fn))
+			ws-trim-methods))
+	 (default (or (cdr-safe (assoc (find-if (lambda (item) (assoc item alist))
+						minibuffer-history)
+				       alist))
+		      (if (consp ws-trim-method-hook)
+			  (car ws-trim-method-hook)
+			ws-trim-method-hook)))
+	 (val (cdr-safe (assoc (completing-read
+				(format "Trim method (default %S): " default)
+				alist nil t)
+			       alist))))
+    (or val default)))
 
+(defun ws-trim-region-1 (from to)
+  (let ((ws-trim-changed-region 'ignore)) ; ws-trim-after-change disabled now.
+    (save-excursion
+      (save-restriction
+        (narrow-to-region from to)
+        (goto-char (point-min))
+        (while (not (eobp))
+          (run-hooks 'ws-trim-method-hook)
+          (forward-line))))))
 
 (defun ws-trim-after-change (beg end length)
   (or (eq ws-trim-changed-region 'ignore)
       (save-excursion
 	(if (eq ws-trim-changed-region 'first-change)
 	    (setq ws-trim-changed-region (cons (point-min-marker) (point-max-marker)))
-	  (when (boundp 'ws-trim-newline-kludge)
-	    ;; This is part 1 of the kludge to counter the `newline' behavior.
-	    (when (and (not (eq ws-trim-newline-kludge t))
-		       (eq (1+ beg) end)
-		       (not (eq end (point-max)))
-		       (string-equal (buffer-substring beg (1+ end)) "\n\n"))
-	      (if (null ws-trim-newline-kludge)
-		  (setq ws-trim-newline-kludge (copy-marker beg)
-			beg (1+ beg))
-		(when (eq (1+ ws-trim-newline-kludge) (car ws-trim-changed-region))
-		  (goto-char (car ws-trim-changed-region)) (forward-line -1)
-		  (set-marker (car ws-trim-changed-region) (point)))
-		(set-marker ws-trim-newline-kludge nil)
-		(setq ws-trim-newline-kludge t))))
 	  (if (consp ws-trim-changed-region)
 	      (progn
 		(if (< beg (car ws-trim-changed-region))
@@ -365,21 +386,6 @@ See the variable docstring for details about this mode."
 	     (endmark (cdr ws-trim-changed-region))
 	     (beg (marker-position begmark))
 	     (end (marker-position endmark)))
-	(when (boundp 'ws-trim-newline-kludge)
-	  ;; This is part 2 of the kludge to counter the `newline' behavior.
-	  (when (markerp ws-trim-newline-kludge)
-	    (save-excursion
-	      (if (and (eq (1+ ws-trim-newline-kludge) beg)
-		       (< beg (point))
-		       (eq (ws-trim-nlc beg (point)) 1))
-		  (when (null (ws-trim-nlc beg end))
-		    (goto-char end) (forward-line) (end-of-line)
-		    (setq end (point)))
-		(when (eq (1+ ws-trim-newline-kludge) beg)
-		  (goto-char beg) (forward-line -1)
-		  (setq beg (point)))))
-	    (set-marker ws-trim-newline-kludge nil))
-	  (setq ws-trim-newline-kludge nil))
 	;; This test isn't essential, but it quickly eliminates almost
 	;; all cases when nothing should be done.
 	(when (or ws-trim-changed-newline (< (point) beg) (> (point) end))
@@ -393,7 +399,7 @@ See the variable docstring for details about this mode."
 		      (setq point-in-region t)
 		    ;; One line changed and point not on it.
 		    (goto-char beg)
-		    (run-hooks 'ws-trim-method-hook)) ; (ws-trim-line) inlined.
+		    (run-hooks 'ws-trim-method-hook))
 		(setq point-in-region (and (>= pos beg) (<= pos end)))
 		(if (and point-in-region (eq (ws-trim-nlc beg end) 1))
 		    ;; Two lines changed and point on one of them -
@@ -401,14 +407,14 @@ See the variable docstring for details about this mode."
 		    ;; exception in level 0 trimming.
 		    (progn (goto-char beg)
 			   (if (= pos beg) (forward-line))
-			   (run-hooks 'ws-trim-method-hook)) ; (ws-trim-line) inlined.
+			   (run-hooks 'ws-trim-method-hook))
 		  (if (>= ws-trim-level 1)
 		      ;; Trim changed region except current line.
 		      (if (not point-in-region)
-			  (ws-trim-region beg end)
-			(if (< beg pos) (ws-trim-region beg pos))
+			  (ws-trim-region-1 beg end)
+			(if (< beg pos) (ws-trim-region-1 beg pos))
 			(goto-char posmark) (end-of-line)
-			(if (< (point) endmark) (ws-trim-region (point) endmark)))
+			(if (< (point) endmark) (ws-trim-region-1 (point) endmark)))
 		    (setq point-in-region nil))))
 	      (if point-in-region
 		  (setq ws-trim-changed-region
@@ -438,14 +444,14 @@ See the variable docstring for details about this mode."
 	;; A bit defensive test - is this function ever called if the
 	;; buffer is unmodified?
 	(or buffer-read-only
-	    (ws-trim-buffer))
+	    (ws-trim-region-1 (point-min) (point-max)))
       (if beg
 	  (if ws-trim-changed-newline
 	      (if (>= ws-trim-level 1)
-		  (ws-trim-region beg end))
+		  (ws-trim-region-1 beg end))
 	    (save-excursion
 	      (goto-char beg)
-	      (ws-trim-line)))))
+	      (run-hooks 'ws-trim-method-hook)))))
     (setq ws-trim-changed-region nil))
   nil)
 
@@ -501,6 +507,10 @@ will use the heuristic.  E.g:
 
 turns on WS Trim in Info-mode (God knows why), off in C mode and
 C++ mode, and uses the heuristic for all other modes.")
+
+(defvar ws-trim-buffers nil)
+;; List of buffers waiting to be processed by
+;; `global-ws-trim-init-ws-trim'.
 
 ;;;###autoload
 (defun global-ws-trim-mode (&optional arg)
