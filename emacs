@@ -106,3 +106,6 @@
 
 (setq rpm-spec-user-mail-address "wfp5p@worldbroken.com")
 
+(setq window-system-default-frame-alist
+       '((x (menu-bar-lines . 1) (tool-bar-lines . 0))
+         (nil (menu-bar-lines . 0) (tool-bar-lines . 0))))
