@@ -14,6 +14,7 @@
 (defalias 'perl-mode 'cperl-mode)
 
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; there has to be an easier way!
 (defun wfp5p-no-color-mode-hook ()
@@ -68,20 +69,6 @@
  '(uniquify-buffer-name-style 'post-forward nil (uniquify)))
 
 
-(if (getenv "EMACS_LT")
-    (progn (set-face-attribute 'default nil :height 80)
-;;    (normal-erase-is-backspace-mode 1)
-	   (push '(height . 40) initial-frame-alist))
-  (push '(height . 50) initial-frame-alist))
-
-;;(add-hook 'c-mode-hook 'turn-on-font-lock)
-
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-
-(setq window-system-default-frame-alist
-       '((x (menu-bar-lines . 1) (tool-bar-lines . 0))
-         (nil (menu-bar-lines . 0) (tool-bar-lines . 0))))
-
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -99,12 +86,8 @@
  '(font-lock-variable-name-face ((((class color) (min-colors 88) (background light)) (:foreground "NavyBlue"))))
  '(region ((t (:background "gray85" :foreground "black")))))
 
+;; Why?
 (put 'downcase-region 'disabled nil)
-
-(defun wfp5p-make-CR-do-indent ()
-  (define-key c-mode-base-map "\C-m" 'c-context-line-break))
-
-;;(add-hook 'c-initialization-hook 'wfp5p-make-CR-do-indent)
 
 (defun wfp-count-file-buffers ()
   (let ((x 0))
@@ -121,14 +104,9 @@
 
 (add-hook 'kill-emacs-query-functions 'wfp-kill-emacs-query-function)
 
-;; (defun wfp-emerge-hook ()
-;;   (yes-or-no-p "emerge hook ")
-;; )
-
-;; (add-hook 'emerge-startup-hook 'wfp-emerge-hook)
-
 (setq rpm-spec-user-mail-address "wfp5p@worldbroken.com")
 
+;;  is this still needed?
 (eval-after-load "tramp-sh"
    '(defun tramp-open-shell (vec shell)
   "Opens shell SHELL."
