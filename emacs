@@ -106,24 +106,3 @@
 
 (setq rpm-spec-user-mail-address "wfp5p@worldbroken.com")
 
-;;  is this still needed?
-(eval-after-load "tramp-sh"
-   '(defun tramp-open-shell (vec shell)
-  "Opens shell SHELL."
-  (with-tramp-progress-reporter
-      vec 5 (format "Opening remote shell `%s'" shell)
-    ;; Find arguments for this shell.
-    (let ((alist tramp-sh-extra-args)
-	  item extra-args)
-      (while (and alist (null extra-args))
-	(setq item (pop alist))
-	(when (string-match (car item) shell)
-	  (setq extra-args (cdr item))))
-      (tramp-send-command
-       vec (format
-	    "exec env ENV='' HISTFILE=/tmp/.trampjunk.$$ HISTSIZE=0 PROMPT_COMMAND='' PS1=%s PS2='' PS3='' %s %s"
-	    (tramp-shell-quote-argument tramp-end-of-output)
-	    shell (or extra-args ""))
-       t))
-    (tramp-set-connection-property
-     (tramp-get-connection-process vec) "remote-shell" shell))))
