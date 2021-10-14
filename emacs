@@ -5,7 +5,7 @@
 (require 'wfp5p-keys)
 (require 'wfp5p-cperl)
 (require 'wfp5p-python)
-(require 'go-mode)
+(require 'wfp5p-go)
 
 
 ;; there has to be an easier way!
@@ -17,16 +17,6 @@
     (progn (add-hook 'conf-mode-hook 'wfp5p-no-color-mode-hook)
 	   (add-hook 'sh-mode-hook 'wfp5p-no-color-mode-hook))
 )
-
-
-;; go-mode config stuff
-(add-hook 'go-mode-hook
-	  (lambda ()
-	    (setq tab-width 4)))
-(setq gofmt-command "goimports")
-(add-hook 'before-save-hook 'gofmt-before-save)
-
-(add-to-list 'auto-mode-alist '("\\.eml$" . text-mode))
 
 ;; turn on ido just for buffer ops
 (unless noninteractive
