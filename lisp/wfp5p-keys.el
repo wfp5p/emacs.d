@@ -24,14 +24,6 @@ sWith: ")
   (let ((case-fold-search nil))
     (query-replace from to)))
 
-(defun save-buffer-kill-buffer ()
-  "Offer to save buffer, then kill it."
-  (interactive)
-  (basic-save-buffer)
-  ;; (if (buffer-modified-p)
-  ;;     (save-buffer))
-  (kill-buffer))
-
 (defun mark-end-of-line (&optional arg)
   "Put mark at end of line. If this command is repeated, it marks
 the next ARG lines after the ones already marked."
@@ -83,7 +75,6 @@ the next ARG lines after the ones already marked."
 		'("f" search-forward)
 		'("k" kill-line)
 		'("r" insert-file)
-		'("s" save-buffer-kill-buffer)
 		'("u" beginning-of-buffer)
 		'("v" end-of-buffer)
 		'("y" kill-region)
