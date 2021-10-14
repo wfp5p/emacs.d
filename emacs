@@ -23,7 +23,8 @@
 
 (if (not (eq window-system 'x))
     (progn (add-hook 'conf-mode-hook 'wfp5p-no-color-mode-hook)
-	   (add-hook 'sh-mode-hook 'wfp5p-no-color-mode-hook))
+	   (add-hook 'sh-mode-hook 'wfp5p-no-color-mode-hook)
+	   (menu-bar-mode -1))
 )
 
 ;; turn on ido just for buffer ops
@@ -105,7 +106,3 @@
 (add-hook 'kill-emacs-query-functions 'wfp-kill-emacs-query-function)
 
 (setq rpm-spec-user-mail-address "wfp5p@worldbroken.com")
-
-(setq window-system-default-frame-alist
-       '((x (menu-bar-lines . 1) (tool-bar-lines . 0))
-         (nil (menu-bar-lines . 0) (tool-bar-lines . 0))))
