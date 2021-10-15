@@ -33,8 +33,6 @@
 
 (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
-(autoload 'hide-lines "hide-lines" "Hide lines based on a regexp" t)
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (custom-set-variables
