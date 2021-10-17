@@ -36,7 +36,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Input Mono" :foundry "FBI " :slant normal :weight normal :height 98 :width normal))))
+ '(default ((t (:family "Input Mono Narrow" :foundry "FBI " :slant normal :weight normal :height 98 :width semi-condensed))))
  '(cperl-array-face ((default nil) (nil nil)))
  '(cperl-hash-face ((((class color) (background light)) nil)))
  '(cperl-nonoverridable-face ((t (:foreground "blue"))))
