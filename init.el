@@ -37,7 +37,7 @@
 
 (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
-(defalias 'yes-or-no-p 'y-or-n-p)
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Why?
 (put 'downcase-region 'disabled nil)
