@@ -1,5 +1,25 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+; This is a bad idea, but it stops the annyoing compile window
+; (setq byte-compile-warnings nil)
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package t))
+(setq-default
+ use-package-always-defer t
+ use-package-always-ensure t)
+
+(use-package auto-package-update
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq	auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
