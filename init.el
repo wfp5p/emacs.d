@@ -43,6 +43,7 @@
   (setq tramp-persistency-file-name (wfp-cache-concat "tramp.eld")))
 (with-eval-after-load 'abbrev
   (setq abbrev-file-name (wfp-cache-concat "abbrev_defs")))
+(setq-default auto-save-list-file-prefix (wfp-cache-concat "auto-save-list/.saves-"))
 
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
