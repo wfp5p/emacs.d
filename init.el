@@ -1,8 +1,9 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-;;(add-to-list 'load-path user-emacs-directory)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
+
+(setq default-frame-alist initial-frame-alist)
 
 (autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
 (autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
