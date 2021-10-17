@@ -5,6 +5,8 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+; stop package from putting package-selected-packages in custom
+(defun package--save-selected-packages (&rest opt) nil)
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
