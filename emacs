@@ -1,4 +1,4 @@
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 ;;(add-to-list 'load-path user-emacs-directory)
 
 (autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
