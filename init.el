@@ -5,14 +5,31 @@
 
 (setq default-frame-alist initial-frame-alist)
 
-(autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
-(autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
+;; This will be used so we don't see tramp and such
+(defconst wfp-cache-directory
+  (expand-file-name (concat user-emacs-directory ".cache/"))
+  "Directory where all cache files should be saved.")
+
+(defun wfp-cache-concat (name)
+  "Return the absolute path of NAME under `wfp-cache-directory'."
+  (let* ((directory (file-name-as-directory wfp-cache-directory))
+         (path (convert-standard-filename (concat directory name))))
+    (make-directory (file-name-directory path) t)
+    path))
+
+(with-eval-after-load 'tramp
+  (setq tramp-persistency-file-name (wfp-cache-concat "tramp.eld")))
+(with-eval-after-load 'abbrev
+  (setq abbrev-file-name (wfp-cache-concat "abbrev_defs")))
 
 (require 'wfp5p-cc)
 (require 'wfp5p-keys)
 (require 'wfp5p-cperl)
 (require 'wfp5p-python)
 (require 'wfp5p-go)
+
+(autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
+(autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
 
 ;; Use cperl mode instead of the default perl mode
 (defalias 'perl-mode 'cperl-mode)
