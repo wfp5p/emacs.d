@@ -1,5 +1,2 @@
 *.elc
-auto-save-list
-thumbs
-tramp
-abbrev_defs
+.cache
