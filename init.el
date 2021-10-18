@@ -29,6 +29,15 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
+;; set default font stuff
+(set-face-attribute 'default nil
+		    :family "Input Mono Narrow"
+		    :foundry "FBI"
+		    :slant 'normal
+		    :weight 'normal
+		    :height 98
+		    :width 'semi-condensed )
+
 ;; default frame size
 (setq initial-frame-alist
    '((height . 50)
@@ -114,9 +123,3 @@
     (unless (frame-focus-state)
       (garbage-collect))))
 
-; set default font stuff
-;; (set-face-attribute 'default nil
-;;                     :font (me/secret 'font-default)
-;;                     :height (me/secret 'font-size))
-;; (set-face-attribute 'fixed-pitch nil :font (me/secret 'font-fixed))
-;; (set-face-attribute 'variable-pitch nil :font (me/secret 'font-variable))
