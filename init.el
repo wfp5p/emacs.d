@@ -29,10 +29,34 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
+;; default frame size
+(setq initial-frame-alist
+   '((height . 50)
+     (width . 80)
+     (height . 50)
+     (top + 50)
+     (tool-bar-lines))
+)
+
 ;; defaults
 (setq
  default-frame-alist initial-frame-alist
+ gnus-novice-user nil
+ inhibit-startup-screen t
+ initial-scratch-message nil
+ isearch-lazy-highlight nil
+ make-backup-files nil
+ mouse-yank-at-point t
+ remote-shell-program "ssh"
+ require-final-newline 'query
+ search-highlight t
+ show-trailing-whitespace t
  gc-cons-threshold (* 8 1024 1024)  ; probably not needed
+ tramp-default-method "ssh"
+ tramp-syntax 'simplified
+ tramp-verbose 8
+ truncate-lines t
+ uniquify-buffer-name-style 'post-forward
  rpm-spec-user-mail-address "wfp5p@worldbroken.com"
 )
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -89,3 +113,10 @@
   (defun wfp-garbage-collect-maybe ()
     (unless (frame-focus-state)
       (garbage-collect))))
+
+; set default font stuff
+;; (set-face-attribute 'default nil
+;;                     :font (me/secret 'font-default)
+;;                     :height (me/secret 'font-size))
+;; (set-face-attribute 'fixed-pitch nil :font (me/secret 'font-fixed))
+;; (set-face-attribute 'variable-pitch nil :font (me/secret 'font-variable))
