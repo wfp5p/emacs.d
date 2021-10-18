@@ -48,7 +48,7 @@
 )
 
 ;; defaults
-(setq
+(setq-default
  default-frame-alist initial-frame-alist
  gnus-novice-user nil
  inhibit-startup-screen t
