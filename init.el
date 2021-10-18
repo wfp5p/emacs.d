@@ -49,7 +49,6 @@
 (require 'wfp5p-keys)
 (require 'wfp5p-cperl)
 (require 'wfp5p-python)
-(require 'wfp5p-go)
 
 (autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
 (autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
