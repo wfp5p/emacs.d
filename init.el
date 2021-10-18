@@ -25,7 +25,15 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
-(setq default-frame-alist initial-frame-alist)
+;; defaults
+(setq
+ default-frame-alist initial-frame-alist
+ gc-cons-threshold (* 8 1024 1024)  ; probably not needed
+ rpm-spec-user-mail-address "wfp5p@worldbroken.com"
+)
+(fset 'yes-or-no-p 'y-or-n-p)
+(put 'downcase-region 'disabled nil) ; Enable downcase-region
+(put 'upcase-region 'disabled nil)   ; Enable upcase-region
 
 ;; This will be used so we don't see tramp and such
 (defconst wfp-cache-directory
@@ -52,19 +60,13 @@
 
 (autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
 (autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
+(autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
 ;; Use cperl mode instead of the default perl mode
 (defalias 'perl-mode 'cperl-mode)
 
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-
-(autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
-
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; Why?
-(put 'downcase-region 'disabled nil)
 
 (defun wfp-count-file-buffers ()
   (let ((x 0))
@@ -81,4 +83,4 @@
 
 (add-hook 'kill-emacs-query-functions 'wfp-kill-emacs-query-function)
 
-(setq rpm-spec-user-mail-address "wfp5p@worldbroken.com")
+
