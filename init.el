@@ -84,4 +84,8 @@
 
 (add-hook 'kill-emacs-query-functions 'wfp-kill-emacs-query-function)
 
-
+; more gc tweaks that is probably overkill
+(add-function :after after-focus-change-function
+  (defun wfp-garbage-collect-maybe ()
+    (unless (frame-focus-state)
+      (garbage-collect))))
