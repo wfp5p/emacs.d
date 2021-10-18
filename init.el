@@ -77,6 +77,12 @@
 (put 'downcase-region 'disabled nil) ; Enable downcase-region
 (put 'upcase-region 'disabled nil)   ; Enable upcase-region
 
+;; turn off menu bar if not in X
+(if (not (window-system))
+    (menu-bar-mode -1)
+)
+
+
 ;; This will be used so we don't see tramp and such
 (defconst wfp-cache-directory
   (expand-file-name (concat user-emacs-directory ".cache/"))
