@@ -22,6 +22,10 @@
   (setq	auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
+(autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
+(autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
+(autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
@@ -58,9 +62,6 @@
 (require 'wfp5p-cperl)
 (require 'wfp5p-python)
 
-(autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
-(autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
-(autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
 ;; Use cperl mode instead of the default perl mode
 (defalias 'perl-mode 'cperl-mode)
