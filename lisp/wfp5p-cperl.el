@@ -33,7 +33,6 @@
   (setq-default cperl-autoindent-on-semi t)
   (setq-default cperl-hairy t)
 ;  (cperl-define-key "\C-c\C-c" 'comment-region)
-  (turn-on-ws-trim)
   (cperl-set-style "BSD"))
 
 (add-hook 'cperl-mode-hook 'wfp5p-cperl-mode-hook)

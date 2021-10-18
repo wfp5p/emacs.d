@@ -22,8 +22,13 @@
   (setq	auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-(autoload 'turn-on-ws-trim "ws-trim" "turn on wstrim" t)
-(autoload 'turn-off-ws-trim "ws-trim" "turn off wstrim" t)
+(use-package ws-butler
+  :commands ws-butler-mode
+  :init
+  (add-hook 'cperl-mode-hook #'ws-butler-mode)
+  (add-hook 'c-mode-hook #'ws-butler-mode)
+)
+
 (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))

@@ -10,7 +10,6 @@
   (setq-default c-electric-flag t)
   (setq-default c-auto-newline t)
   (define-key c-mode-map "{" 'self-insert-command)
-  (turn-on-ws-trim)
   (let ((default-mode "linux")
 	(mode)
 	(name))
