@@ -59,21 +59,6 @@
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; there has to be an easier way!
-(defun wfp5p-no-color-mode-hook ()
-  (font-lock-mode 0)
-  )
-
-(if (not (eq window-system 'x))
-    (progn (add-hook 'conf-mode-hook 'wfp5p-no-color-mode-hook)
-	   (add-hook 'sh-mode-hook 'wfp5p-no-color-mode-hook)
-	   (menu-bar-mode -1))
-)
-
-;; turn on ido just for buffer ops
-(unless noninteractive
-	(ido-mode 'buffer))
-
 (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
 (fset 'yes-or-no-p 'y-or-n-p)
