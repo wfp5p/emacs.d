@@ -1,5 +1,3 @@
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-
 (defun wfp5p-revert-buffer ()
   "Do revert-buffer on current buffer."
   (interactive)
