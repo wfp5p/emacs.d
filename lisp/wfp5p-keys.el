@@ -59,11 +59,13 @@ the next ARG lines after the ones already marked."
 (define-key global-map "\C-x[" 'kmacro-start-macro)
 (define-key global-map "\C-x]" 'kmacro-end-macro)
 
+(define-sequential-command seq-home
+  beginning-of-line beginning-of-buffer sequential-command-return)
 
 (define-key global-map [home] 'seq-home)
 
 (define-sequential-command seq-end
-  end-of-line end-of-buffer seq-return)
+  end-of-line end-of-buffer sequential-command-return)
 
 (define-key global-map [end] 'seq-end)
 
