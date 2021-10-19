@@ -1,5 +1,3 @@
-(require 'sequential-command)
-
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (autoload 'zap-up-to-char "misc" "zap up to char" t)
@@ -59,16 +57,6 @@ the next ARG lines after the ones already marked."
 (define-key global-map "\C-x[" 'kmacro-start-macro)
 (define-key global-map "\C-x]" 'kmacro-end-macro)
 
-(define-sequential-command seq-home
-  beginning-of-line beginning-of-buffer sequential-command-return)
-
-(define-key global-map [home] 'seq-home)
-
-(define-sequential-command seq-end
-  end-of-line end-of-buffer sequential-command-return)
-
-(define-key global-map [end] 'seq-end)
-
 (defvar wfp5p-C-k-map
   (let ((keymap (make-sparse-keymap)))
     (mapc (function (lambda (kb) (define-key keymap (car kb) (cadr kb))))
@@ -85,17 +73,3 @@ the next ARG lines after the ones already marked."
 
 (define-key global-map "\C-k" wfp5p-C-k-map)
 (provide 'wfp5p-keys)
-
-;; (defun revert-all-buffers ()
-;;           "Refreshes all open buffers from their respective files"
-;;           (interactive)
-;;           (let* ((list (buffer-list))
-;;                  (buffer (car list)))
-;;             (while buffer
-;;               (when (and (buffer-file-name buffer)
-;;                          (not (buffer-modified-p buffer)))
-;;                 (set-buffer buffer)
-;;                 (revert-buffer t t t))
-;;               (setq list (cdr list))
-;;               (setq buffer (car list))))
-;;           (message "Refreshed open files"))
