@@ -1,7 +1,5 @@
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-(autoload 'zap-up-to-char "misc" "zap up to char" t)
-
 (defun wfp5p-revert-buffer ()
   "Do revert-buffer on current buffer."
   (interactive)
