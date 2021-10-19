@@ -113,6 +113,8 @@
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+
+;; Ask on exit if more than 1 buffer
 (defun wfp-count-file-buffers ()
   (let ((x 0))
     (dolist (buffer (buffer-list))

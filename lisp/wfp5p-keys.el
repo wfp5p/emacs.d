@@ -1,5 +1,4 @@
 (require 'sequential-command)
-(require 'thingatpt)
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
