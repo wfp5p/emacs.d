@@ -1,3 +1,4 @@
 *.elc
 .cache
 elpa
+.last-package-update-day
