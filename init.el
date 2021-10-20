@@ -31,7 +31,9 @@
   (add-hook 'c-mode-hook #'ws-butler-mode)
 )
 
-(autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
+(require 'wfp5p-keys)
+
+;; (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
@@ -104,7 +106,6 @@
 (setq-default auto-save-list-file-prefix (wfp-cache-concat "auto-save-list/.saves-"))
 
 (require 'wfp5p-cc)
-(require 'wfp5p-keys)
 (require 'wfp5p-cperl)
 (require 'wfp5p-python)
 

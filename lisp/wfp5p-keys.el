@@ -1,33 +1,9 @@
-(defun wfp5p-revert-buffer ()
-  "Do revert-buffer on current buffer."
-  (interactive)
-  (revert-buffer nil t t)
-  (message (concat "Reverted buffer " (buffer-name))))
-
-(defun wfp5p-nuke-auto-save ()
-  "Delete the current buffers auto-save file."
-  (interactive)
-  (delete-auto-save-file-if-necessary t)
-  (message (concat "Nuked autosave for " (buffer-name))))
-
 (defun wfp5p-qr (from to)
   "Do a case sensitive query-replace"
   (interactive "sReplace:
 sWith: ")
   (let ((case-fold-search nil))
     (query-replace from to)))
-
-(defun mark-end-of-line (&optional arg)
-  "Put mark at end of line. If this command is repeated, it marks
-the next ARG lines after the ones already marked."
-  (interactive "p")
-  (push-mark
-   (save-excursion
-     (if (and (eq last-command this-command) (mark t))
-	 (goto-char (mark)))
-     (end-of-line arg)
-     (point))
-   nil t))
 
 (defun isearch-yank-symbol ()
   "Pull next symbol from buffer into search string."
@@ -41,17 +17,16 @@ the next ARG lines after the ones already marked."
 
 
 ;; wfp5p key maps
-(define-key isearch-mode-map "\C-x" 'isearch-yank-symbol)
-(define-key global-map "\M-d" 'kill-line)
-(define-key global-map "\M-s" 'save-buffer)
-(define-key global-map "\M-t" 'wfp5p-qr)
-(define-key global-map "\C-u" 'scroll-down)
-(define-key global-map "\M-u" 'universal-argument)
-(define-key global-map [f5] 'goto-line)
-(define-key global-map [f7] 'wfp5p-revert-buffer)
+(define-key isearch-mode-map (kbd "C-x") 'isearch-yank-symbol)
+(define-key global-map (kbd "M-d") 'kill-line)
+(define-key global-map (kbd "M-s") 'save-buffer)
+(define-key global-map (kbd "M-t") 'wfp5p-qr)
+(define-key global-map (kbd "C-u") 'scroll-down)
+(define-key global-map (kbd "M-u") 'universal-argument)
+(define-key global-map (kbd "<f5>") 'goto-line)
 
-(define-key global-map "\C-x[" 'kmacro-start-macro)
-(define-key global-map "\C-x]" 'kmacro-end-macro)
+;; (define-key global-map (kbd "C-x [") 'kmacro-start-macro)
+;; (define-key global-map (kbd "C-x ]") 'kmacro-end-macro)
 
 (defvar wfp5p-C-k-map
   (let ((keymap (make-sparse-keymap)))
@@ -63,9 +38,8 @@ the next ARG lines after the ones already marked."
 		'("u" beginning-of-buffer)
 		'("v" end-of-buffer)
 		'("y" kill-region)
-		'("z" zap-up-to-char)
-		'("\C-k" wfp5p-nuke-auto-save)))
+		'("z" zap-up-to-char)))
     keymap))
-
 (define-key global-map "\C-k" wfp5p-C-k-map)
+
 (provide 'wfp5p-keys)
