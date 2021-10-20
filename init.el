@@ -52,6 +52,20 @@
 
 (add-hook 'c-mode-common-hook 'wfp-c-mode-hook)
 
+;; perl mode
+(defalias 'perl-mode 'cperl-mode)
+(defun wfp-cperl-mode-hook ()
+  (setq cperl-electric-parens 'null
+	cperl-invalid-face 'default
+	cperl-electric-keywords 'null
+	cperl-autoindent-on-semi t
+	cperl-hairy t)
+  (cperl-set-style "PerlStyle") ;; BSD
+  (define-abbrev-table 'cperl-mode-abbrev-table
+    '(("pshebang"   "#! /usr/bin/perl\n\nuse strict;\nuse feature ':5.10';")))
+)
+(add-hook 'cperl-mode-hook 'wfp-cperl-mode-hook)
+(add-hook 'cperl-mode-hook #'abbrev-mode)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
@@ -124,14 +138,8 @@
 (setq-default auto-save-list-file-prefix (wfp-cache-concat "auto-save-list/.saves-"))
 
 
-(require 'wfp5p-cperl)
-
-;; Use cperl mode instead of the default perl mode
-(defalias 'perl-mode 'cperl-mode)
-
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-
 
 ;; Ask on exit if more than 1 buffer
 (defun wfp-count-file-buffers ()
@@ -154,4 +162,3 @@
   (defun wfp-garbage-collect-maybe ()
     (unless (frame-focus-state)
       (garbage-collect))))
-
