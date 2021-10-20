@@ -33,6 +33,14 @@
 
 (require 'wfp5p-keys)
 
+(use-package python-mode
+  :init
+  (define-abbrev-table 'python-mode-abbrev-table
+    '(("pshebang" "#! /bin/python")))
+  (setq python-indent-offset 4))
+(add-hook 'python-mode-hook #'abbrev-mode)
+
+
 ;; (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -107,8 +115,6 @@
 
 (require 'wfp5p-cc)
 (require 'wfp5p-cperl)
-(require 'wfp5p-python)
-
 
 ;; Use cperl mode instead of the default perl mode
 (defalias 'perl-mode 'cperl-mode)
