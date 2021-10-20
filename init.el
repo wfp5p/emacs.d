@@ -50,7 +50,7 @@
   (setq c-auto-newline t)
   (c-set-style "linux"))
 
-(add-hook 'c-mode-common-hook 'wfp-c-mode-hook)
+(add-hook 'c-mode-common-hook #'wfp-c-mode-hook)
 
 ;; perl mode
 (defalias 'perl-mode 'cperl-mode)
@@ -64,7 +64,7 @@
   (define-abbrev-table 'cperl-mode-abbrev-table
     '(("pshebang"   "#! /usr/bin/perl\n\nuse strict;\nuse feature ':5.10';")))
 )
-(add-hook 'cperl-mode-hook 'wfp-cperl-mode-hook)
+(add-hook 'cperl-mode-hook #'wfp-cperl-mode-hook)
 (add-hook 'cperl-mode-hook #'abbrev-mode)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -139,7 +139,7 @@
 
 
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook #'turn-on-auto-fill)
 
 ;; Ask on exit if more than 1 buffer
 (defun wfp-count-file-buffers ()
@@ -155,7 +155,7 @@
        (yes-or-no-p "multiple file buffers; exit anyway? ")
      (not nil)))
 
-(add-hook 'kill-emacs-query-functions 'wfp-kill-emacs-query-function)
+(add-hook 'kill-emacs-query-functions #'wfp-kill-emacs-query-function)
 
 ; more gc tweaks that is probably overkill
 (add-function :after after-focus-change-function
