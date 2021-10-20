@@ -29,6 +29,7 @@
   :init
   (add-hook 'cperl-mode-hook #'ws-butler-mode)
   (add-hook 'c-mode-hook #'ws-butler-mode)
+  (add-hook 'python-mode-hook #'ws-butler-mode)
 )
 
 (require 'wfp5p-keys)
@@ -38,10 +39,19 @@
   (define-abbrev-table 'python-mode-abbrev-table
     '(("pshebang" "#! /bin/python")))
   (setq python-indent-offset 4))
+
 (add-hook 'python-mode-hook #'abbrev-mode)
 
 
-;; (autoload 'describe-unbound-keys "unbound" "show unbound keys" t)
+;; cc-mode
+(defun wfp-c-mode-hook ()
+  ;;  (define-key c-mode-map "{" 'self-insert-command)
+  (setq c-electric-flag t)
+  (setq c-auto-newline t)
+  (c-set-style "linux"))
+
+(add-hook 'c-mode-common-hook 'wfp-c-mode-hook)
+
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
@@ -113,7 +123,7 @@
   (setq abbrev-file-name (wfp-cache-concat "abbrev_defs")))
 (setq-default auto-save-list-file-prefix (wfp-cache-concat "auto-save-list/.saves-"))
 
-(require 'wfp5p-cc)
+
 (require 'wfp5p-cperl)
 
 ;; Use cperl mode instead of the default perl mode
