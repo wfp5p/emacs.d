@@ -131,6 +131,8 @@
 
 (add-hook 'kill-emacs-query-functions #'wfp-kill-emacs-query-function)
 
+(load-theme 'wfp t)
+
 ; more gc tweaks that is probably overkill
 (add-function :after after-focus-change-function
   (defun wfp-garbage-collect-maybe ()
