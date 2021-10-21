@@ -1,36 +1,9 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-; This is a bad idea, but it stops the annyoing compile window
-; (setq byte-compile-warnings nil)
-
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-; stop package from putting package-selected-packages in custom
-(defun package--save-selected-packages (&rest opt) nil)
-
-(when (< emacs-major-version 27)
-  (package-initialize))
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package t))
-(setq-default
- use-package-always-defer t
- use-package-always-ensure t)
-
-(use-package auto-package-update
-  :config
-  (setq auto-package-update-delete-old-versions t)
-  (setq	auto-package-update-hide-results t)
-  (auto-package-update-maybe))
-
-(use-package ws-butler
-  :commands ws-butler-mode
-  :init
-  (add-hook 'cperl-mode-hook #'ws-butler-mode)
-  (add-hook 'c-mode-hook #'ws-butler-mode)
-  (add-hook 'python-mode-hook #'ws-butler-mode)
-)
+(require 'ws-butler)
+(add-hook 'cperl-mode-hook #'ws-butler-mode)
+(add-hook 'c-mode-hook #'ws-butler-mode)
+(add-hook 'python-mode-hook #'ws-butler-mode)
 
 (require 'wfp5p-keys)
 
