@@ -10,7 +10,7 @@
 ;; python mode
 (defun wfp-python-mode-hook ()
   (define-abbrev-table 'python-mode-abbrev-table
-    '(("pshebang" "#! /bin/python")))
+    '(("pshebang" "#! /usr/bin/python")))
   (setq python-indent-offset 4))
 
 (add-hook 'python-mode-hook #'wfp-python-mode-hook)
