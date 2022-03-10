@@ -362,12 +362,13 @@ This variant of `rx' supports common Python named REGEXPS."
   `(rx-let ((block-start       (seq symbol-start
                                     (or "def" "class" "if" "elif" "else" "try"
                                         "except" "finally" "for" "while" "with"
+                                        "match" "case"
                                         ;; Python 3.5+ PEP492
                                         (and "async" (+ space)
                                              (or "def" "for" "with")))
                                     symbol-end))
             (dedenter          (seq symbol-start
-                                    (or "elif" "else" "except" "finally")
+                                    (or "elif" "else" "except" "finally" "case")
                                     symbol-end))
             (block-ender       (seq symbol-start
                                     (or
@@ -554,7 +555,7 @@ class declarations.")
           "and" "del" "from" "not" "while" "as" "elif" "global" "or" "with"
           "assert" "else" "if" "pass" "yield" "break" "except" "import" "class"
           "in" "raise" "continue" "finally" "is" "return" "def" "for" "lambda"
-          "try"
+          "try" "match" "case"
           ;; False, None, and True are listed as keywords on the Python 3
           ;; documentation, but since they also qualify as constants they are
           ;; fontified like that in order to keep font-lock consistent between
@@ -5109,7 +5110,8 @@ likely an invalid python file."
                (pairs '(("elif" "elif" "if")
                         ("else" "if" "elif" "except" "for" "while")
                         ("except" "except" "try")
-                        ("finally" "else" "except" "try")))
+                        ("finally" "else" "except" "try")
+                        ("case" "case" "match")))
                (dedenter (match-string-no-properties 0))
                (possible-opening-blocks (cdr (assoc-string dedenter pairs)))
                (collected-indentations)
