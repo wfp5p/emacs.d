@@ -10,7 +10,7 @@
 ;; python mode
 (defun wfp-python-mode-hook ()
   (define-abbrev-table 'python-mode-abbrev-table
-    '(("pshebang" "#! /bin/python")))
+    '(("pshebang" "#! /usr/bin/python")))
   (setq python-indent-offset 4))
 
 (add-hook 'python-mode-hook #'wfp-python-mode-hook)
@@ -130,6 +130,8 @@
      (not nil)))
 
 (add-hook 'kill-emacs-query-functions #'wfp-kill-emacs-query-function)
+
+(load-theme 'wfp t)
 
 ; more gc tweaks that is probably overkill
 (add-function :after after-focus-change-function
