@@ -46,12 +46,12 @@
 
 ;; set default font stuff
 (set-face-attribute 'default nil
-		    :family "Input Mono Narrow"
-		    :foundry "FBI"
+		    :family "Fira Code"
+		    :foundry "CTDB"
 		    :slant 'normal
 		    :weight 'normal
-		    :height 98
-		    :width 'semi-condensed )
+		    :height 130
+		    :width 'normal )
 
 ;; default frame size
 (setq initial-frame-alist
