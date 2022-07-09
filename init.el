@@ -17,14 +17,26 @@
 (add-hook 'python-mode-hook #'abbrev-mode)
 
 
+;; Work this out, it's a lot of old
 ;; cc-mode
-(defun wfp-c-mode-hook ()
-  ;;  (define-key c-mode-map "{" 'self-insert-command)
-  (setq c-electric-flag t)
-  (setq c-auto-newline t)
-  (c-set-style "linux"))
+(c-add-style
+ "wfp-c-style"
+ '("linux"
+   (c-basic-offset . 4)
+   ))
 
-(add-hook 'c-mode-common-hook #'wfp-c-mode-hook)
+(defun wfp-c-mode-hook ()
+  (c-set-style "wfp-c-style")
+  )
+
+(add-hook 'c-mode-common-hook 'wfp-c-mode-hook)
+
+(dir-locals-set-class-variables
+ 'linux-c-mode
+ '((c-mode . ((c-basic-offset . 8)))))
+
+(dir-locals-set-directory-class
+ "/lv4/work/kernel" 'linux-c-mode)
 
 ;; perl mode
 (defalias 'perl-mode 'cperl-mode)
