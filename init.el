@@ -91,6 +91,7 @@
  tramp-default-method "ssh"
  tramp-syntax 'simplified
  tramp-verbose 8
+ tramp-allow-unsafe-temporary-files t
  truncate-lines t
  uniquify-buffer-name-style 'post-forward
  rpm-spec-user-mail-address "wfp5p@worldbroken.com"
