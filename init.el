@@ -94,6 +94,7 @@
  tramp-allow-unsafe-temporary-files t
  truncate-lines t
  uniquify-buffer-name-style 'post-forward
+ visible-bell t
  rpm-spec-user-mail-address "wfp5p@worldbroken.com"
 )
 (fset 'yes-or-no-p 'y-or-n-p)
