@@ -61,8 +61,8 @@
 		    :family "Fira Code"
 		    :foundry "CTDB"
 		    :slant 'normal
-		    :weight 'normal
-		    :height 130
+		    :weight 'medium
+		    :height 128
 		    :width 'normal )
 
 ;; default frame size
