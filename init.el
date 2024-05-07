@@ -6,6 +6,7 @@
 (add-hook 'python-mode-hook #'ws-butler-mode)
 
 (require 'wfp5p-keys)
+(require 'wfp5p-skels)
 
 ;; python mode
 (defun wfp-python-mode-hook ()
