@@ -1,5 +1,10 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+(if (not (and (fboundp 'treesit-available-p)
+         (treesit-available-p)))
+    (defun treesit-language-available-p (j)
+      nil))
+
 (require 'ws-butler)
 (add-hook 'cperl-mode-hook #'ws-butler-mode)
 (add-hook 'c-mode-hook #'ws-butler-mode)
@@ -13,7 +18,6 @@
   (setq python-indent-offset 4))
 
 (add-hook 'python-mode-hook #'wfp-python-mode-hook)
-
 (when (treesit-language-available-p 'python)
   (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))
   (add-hook 'python-ts-mode-hook #'wfp-python-mode-hook))
@@ -52,7 +56,7 @@
     '(("pshebang"   "#! /usr/bin/perl\n\nuse strict;\nuse feature ':5.10';")))
 )
 (add-hook 'cperl-mode-hook #'wfp-cperl-mode-hook)
-(add-hook 'cperl-mode-hook #'abbrev-mode)
+
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
