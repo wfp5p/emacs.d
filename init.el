@@ -16,12 +16,9 @@
 ;; python mode
 (defun wfp-python-mode-hook ()
   (setq python-indent-offset 4))
-
 (add-hook 'python-mode-hook #'wfp-python-mode-hook)
-(when (treesit-language-available-p 'python)
-  (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))
-  (add-hook 'python-ts-mode-hook #'ws-butler-mode)
-  (add-hook 'python-ts-mode-hook #'wfp-python-mode-hook))
+
+(setq python-ts-mode-hook python-mode-hook)
 
 ;; Work this out, it's a lot of old
 ;; cc-mode
