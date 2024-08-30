@@ -153,8 +153,3 @@
 
 (load-theme 'wfp t)
 
-; more gc tweaks that is probably overkill
-(add-function :after after-focus-change-function
-  (defun wfp-garbage-collect-maybe ()
-    (unless (frame-focus-state)
-      (garbage-collect))))
