@@ -1,9 +1,13 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-(if (not (and (fboundp 'treesit-available-p)
-         (treesit-available-p)))
-    (defun treesit-language-available-p (j)
-      nil))
+(when (and (fboundp 'treesit-available-p)
+	   (treesit-available-p))
+  (use-package treesit-auto
+    :custom
+    (treesit-auto-install 'prompt)
+    :config
+    (treesit-auto-add-to-auto-mode-alist ''(bash python toml yaml))
+    (global-treesit-auto-mode)))
 
 (require 'ws-butler)
 (add-hook 'cperl-mode-hook #'ws-butler-mode)
