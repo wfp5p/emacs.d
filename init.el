@@ -1,5 +1,13 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
+;; default frame settings
+(add-to-list 'default-frame-alist '(height . 50))
+(add-to-list 'default-frame-alist '(width . 80))
+(add-to-list 'default-frame-alist '(height . 50))
+(add-to-list 'default-frame-alist '(top + 50))
+(add-to-list 'default-frame-alist '(tool-bar-lines))
+
+;; treesit stuff
 (when (and (fboundp 'treesit-available-p)
 	   (treesit-available-p))
   (use-package treesit-auto
@@ -19,6 +27,7 @@
 
 ;; python mode
 (defun wfp-python-mode-hook ()
+  (add-to-list 'default-frame-alist '(width . 100))
   (setq python-indent-offset 4))
 (add-hook 'python-mode-hook #'wfp-python-mode-hook)
 
@@ -72,18 +81,9 @@
 		    :height 128
 		    :width 'normal )
 
-;; default frame size
-(setq initial-frame-alist
-   '((height . 50)
-     (width . 80)
-     (height . 50)
-     (top + 50)
-     (tool-bar-lines))
-)
 
 ;; defaults
 (setq-default
- default-frame-alist initial-frame-alist
  gnus-novice-user nil
  inhibit-startup-screen t
  initial-scratch-message nil
