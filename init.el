@@ -26,6 +26,7 @@
 (require 'wfp5p-skels)
 
 ;; python mode
+(setq python-indent-guess-indent-offset-verbose nil)
 (defun wfp-python-mode-hook ()
   (add-to-list 'default-frame-alist '(width . 100))
   (setq python-indent-offset 4))
