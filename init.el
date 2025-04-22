@@ -14,7 +14,7 @@
     :custom
     (treesit-auto-install 'prompt)
     :config
-    (treesit-auto-add-to-auto-mode-alist ''(bash python toml yaml))
+    (setq treesit-auto-langs '(bash python toml))
     (global-treesit-auto-mode)))
 
 (require 'ws-butler)
