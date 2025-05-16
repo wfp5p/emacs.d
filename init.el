@@ -64,8 +64,6 @@
 	cperl-autoindent-on-semi t
 	cperl-hairy t)
   (cperl-set-style "PerlStyle") ;; BSD
-  (define-abbrev-table 'cperl-mode-abbrev-table
-    '(("pshebang"   "#! /usr/bin/perl\n\nuse strict;\nuse feature ':5.10';")))
 )
 (add-hook 'cperl-mode-hook #'wfp-cperl-mode-hook)
 
@@ -136,6 +134,9 @@
 
 (add-to-list 'auto-mode-alist '("COMMIT_EDITMSG" . text-mode))
 (add-hook 'text-mode-hook #'turn-on-auto-fill)
+
+(add-to-list 'auto-mode-alist '("\\.bu\\'" . yaml-mode))
+(add-hook 'yaml-mode-hook #'turn-off-auto-fill)
 
 ;; Ask on exit if more than 1 buffer
 (defun wfp-count-file-buffers ()
