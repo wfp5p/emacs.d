@@ -19,6 +19,7 @@ sWith: ")
 ;; wfp5p key maps
 (define-key isearch-mode-map (kbd "C-x") 'isearch-yank-symbol)
 (define-key global-map (kbd "M-d") 'kill-line)
+(define-key global-map (kbd "M-o") 'read-only-mode)
 (define-key global-map (kbd "M-s") 'save-buffer)
 (define-key global-map (kbd "M-t") 'wfp5p-qr)
 (define-key global-map (kbd "C-u") 'scroll-down)
