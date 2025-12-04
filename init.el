@@ -10,6 +10,13 @@
     (setq treesit-auto-langs '(bash python toml))
     (global-treesit-auto-mode)))
 
+;; which-key
+(setq which-key-show-early-on-C-h t)
+(setq which-key-idle-delay 10000)
+(setq which-key-idle-secondary-delay 0.05)
+(which-key-mode)
+
+
 (require 'ws-butler)
 (add-hook 'cperl-mode-hook #'ws-butler-mode)
 (add-hook 'c-mode-hook #'ws-butler-mode)
