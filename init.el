@@ -53,7 +53,7 @@
  '((c-mode . ((c-basic-offset . 8)))))
 
 (dir-locals-set-directory-class
- "/lv4/work/kernel" 'linux-c-mode)
+ "/lv1/work/kernel" 'linux-c-mode)
 
 ;; perl mode
 (defalias 'perl-mode 'cperl-mode)
