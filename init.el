@@ -7,7 +7,7 @@
     :custom
     (treesit-auto-install 'prompt)
     :config
-    (setq treesit-auto-langs '(bash python toml))
+    (setq treesit-auto-langs '(bash python toml json))
     (global-treesit-auto-mode)))
 
 ;; which-key
