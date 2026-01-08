@@ -108,8 +108,21 @@
 (put 'upcase-region 'disabled nil)   ; Enable upcase-region
 
 ;; turn off menu bar if not in X
-(unless (display-graphic-p)
-   (menu-bar-mode -1))
+;; good enough if not using emacs daemon
+;; (unless (display-graphic-p)
+;;    (menu-bar-mode -1))
+
+;; more complicated method for emacs daemon
+(defun contextual-menubar (&optional frame)
+  "Display the menubar in FRAME (default: selected frame) if on a
+    graphical display, but hide it if in terminal."
+  (interactive)
+  (set-frame-parameter frame 'menu-bar-lines
+                             (if (display-graphic-p frame)
+                                  1 0)))
+
+(add-hook 'after-make-frame-functions #'contextual-menubar)
+(add-hook 'after-init-hook #'contextual-menubar)
 
 
 ;; This will be used so we don't see tramp and such
