@@ -93,16 +93,16 @@
  require-final-newline 'query
  search-highlight t
  show-trailing-whitespace t
- gc-cons-threshold (* 8 1024 1024)  ; probably not needed
  tramp-default-method "ssh"
  tramp-syntax 'simplified
  tramp-verbose 8
  tramp-allow-unsafe-temporary-files t
  truncate-lines t
- uniquify-buffer-name-style 'post-forward
+;; uniquify-buffer-name-style 'post-forward
  visible-bell t
  rpm-spec-user-mail-address "wfp5p@worldbroken.com"
 )
+
 (fset 'yes-or-no-p 'y-or-n-p)
 (put 'downcase-region 'disabled nil) ; Enable downcase-region
 (put 'upcase-region 'disabled nil)   ; Enable upcase-region
