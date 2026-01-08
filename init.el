@@ -108,9 +108,8 @@
 (put 'upcase-region 'disabled nil)   ; Enable upcase-region
 
 ;; turn off menu bar if not in X
-(if (not (window-system))
-    (menu-bar-mode -1)
-)
+(unless (display-graphic-p)
+   (menu-bar-mode -1))
 
 
 ;; This will be used so we don't see tramp and such
