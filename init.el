@@ -93,6 +93,7 @@
  require-final-newline 'query
  search-highlight t
  show-trailing-whitespace t
+ auth-source-save-behavior nil
  tramp-default-method "ssh"
  tramp-syntax 'simplified
  tramp-verbose 8
