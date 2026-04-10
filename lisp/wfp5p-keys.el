@@ -16,6 +16,9 @@ sWith: ")
       (beginning-of-thing 'symbol) (end-of-thing 'symbol)))))
 
 
+;; fat fingered this once too many times
+(keymap-unset global-map "C-x m")
+
 ;; wfp5p key maps
 (define-key isearch-mode-map (kbd "C-x") 'isearch-yank-symbol)
 (define-key global-map (kbd "M-d") 'kill-line)
