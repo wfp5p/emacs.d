@@ -20,6 +20,7 @@ sWith: ")
 (keymap-unset global-map "C-x m")
 
 ;; wfp5p key maps
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
 (define-key isearch-mode-map (kbd "C-x") 'isearch-yank-symbol)
 (define-key global-map (kbd "M-d") 'kill-line)
 (define-key global-map (kbd "M-o") 'read-only-mode)
