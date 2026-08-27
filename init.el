@@ -104,7 +104,7 @@
  rpm-spec-user-mail-address "wfp5p@worldbroken.com"
 )
 
-(fset 'yes-or-no-p 'y-or-n-p)
+(setopt use-short-answers t)
 (put 'downcase-region 'disabled nil) ; Enable downcase-region
 (put 'upcase-region 'disabled nil)   ; Enable upcase-region
 
