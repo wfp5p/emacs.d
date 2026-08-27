@@ -7,13 +7,13 @@
     :custom
     (treesit-auto-install 'prompt)
     :config
-    (setq treesit-auto-langs '(bash python toml json))
+    (setopt treesit-auto-langs '(bash python toml json))
     (global-treesit-auto-mode)))
 
 ;; which-key
-(setq which-key-show-early-on-C-h t)
-(setq which-key-idle-delay 10000)
-(setq which-key-idle-secondary-delay 0.05)
+(setopt which-key-show-early-on-C-h t)
+(setopt which-key-idle-delay 10000.0)
+(setopt which-key-idle-secondary-delay 0.05)
 (which-key-mode)
 
 
@@ -26,13 +26,13 @@
 (require 'wfp5p-skels)
 
 ;; python mode
-(setq python-indent-guess-indent-offset-verbose nil)
+(setopt python-indent-guess-indent-offset-verbose nil)
 (defun wfp-python-mode-hook ()
   (add-to-list 'default-frame-alist '(width . 100))
-  (setq python-indent-offset 4))
+  (setopt python-indent-offset 4))
 (add-hook 'python-mode-hook #'wfp-python-mode-hook)
 
-(setq python-ts-mode-hook python-mode-hook)
+(setopt python-ts-mode-hook python-mode-hook)
 
 ;; Work this out, it's a lot of old
 ;; cc-mode
@@ -58,7 +58,7 @@
 ;; perl mode
 (defalias 'perl-mode 'cperl-mode)
 (defun wfp-cperl-mode-hook ()
-  (setq cperl-electric-parens 'null
+  (setopt cperl-electric-parens 'null
 	cperl-invalid-face 'default
 	cperl-electric-keywords 'null
 	cperl-autoindent-on-semi t
@@ -68,7 +68,7 @@
 (add-hook 'cperl-mode-hook #'wfp-cperl-mode-hook)
 
 
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setopt custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
 ;; set default font stuff
@@ -139,9 +139,9 @@
     path))
 
 (with-eval-after-load 'tramp
-  (setq tramp-persistency-file-name (wfp-cache-concat "tramp.eld")))
+  (setopt tramp-persistency-file-name (wfp-cache-concat "tramp.eld")))
 (with-eval-after-load 'abbrev
-  (setq abbrev-file-name (wfp-cache-concat "abbrev_defs")))
+  (setopt abbrev-file-name (wfp-cache-concat "abbrev_defs")))
 (setq-default auto-save-list-file-prefix (wfp-cache-concat "auto-save-list/.saves-"))
 
 

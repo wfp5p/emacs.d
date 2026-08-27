@@ -1,4 +1,4 @@
-(setq wfp5p-modes-alist '( ("/lv4/work/kernel" . "linux")))
+(setopt wfp5p-modes-alist '( ("/lv4/work/kernel" . "linux")))
 
 (defconst wfp5p-c-style
   '("bsd"
@@ -13,8 +13,8 @@
   (let ((default-mode "linux")
 	(mode)
 	(name))
-    (setq name (file-truename buffer-file-name))
-    (setq mode (assoc-default name wfp5p-modes-alist 'string-match))
+    (setopt name (file-truename buffer-file-name))
+    (setopt mode (assoc-default name wfp5p-modes-alist 'string-match))
     (if (stringp mode)
 	(c-set-style mode)
       (c-set-style default-mode))))

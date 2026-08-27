@@ -1,5 +1,5 @@
 (auto-insert-mode t)
-(setq auto-insert-query nil)
+(setopt auto-insert-query nil)
 
 (add-to-list 'auto-insert-alist
              '(("\\.pl$" . "Perl Program")
